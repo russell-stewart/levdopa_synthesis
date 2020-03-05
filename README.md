@@ -29,7 +29,8 @@ The following external metabolomics datasets are used in this project
 
 * BiGG Models _E. coli_ core [http://bigg.ucsd.edu/models/e_coli_core](http://bigg.ucsd.edu/models/e_coli_core)
 * Relevant KEGG Pathways
-  - (https://www.kegg.jp/kegg-bin/show_pathway?map01063, https://www.kegg.jp/kegg-bin/show_pathway?org_name=eco&mapno=00400&mapscale=&show_description=hide)[https://www.kegg.jp/kegg-bin/show_pathway?map01063, https://www.kegg.jp/kegg-bin/show_pathway?org_name=eco&mapno=00400&mapscale=&show_description=hide]
+  - (https://www.kegg.jp/kegg-bin/show_pathway?map01063)[https://www.kegg.jp/kegg-bin/show_pathway?map01063]
+  - (https://www.kegg.jp/kegg-bin/show_pathway?org_name=eco&mapno=00400&mapscale=&show_description=hide)[https://www.kegg.jp/kegg-bin/show_pathway?org_name=eco&mapno=00400&mapscale=&show_description=hide]
   - (https://www.kegg.jp/kegg-bin/show_pathway?map00030)[https://www.kegg.jp/kegg-bin/show_pathway?map00030]
 
 ## References
