@@ -1,0 +1,46 @@
+Enzyme,Pathway,Reaction
+hexokinase,glycolysis,glucose + atp <--> g6p
+g6p_isomerase,glycolysis,g6p <--> f6p
+pfk1,glycolysis,f6p <--> f16bp
+aldolase,glycolysis,f16bp <--> g3p + dhap
+triose_phosphate_isomerase,glycolysis,g3p <--> dhap
+gap_dehydrogenase,glycolysis,g3p <--> nadh + 13bpg
+phosphoglycerate_kinase,glycolysis,13bpg <--> 3pg + atp
+phosphoglycerate_mutase,glycolysis,3pg <--> 2pg
+enolase,glycolysis,2pg <--> pep
+pyruvate_kinase,glycolysis,pep <--> pyruvate + atp
+ldh,glycolysis,pyruvate + nadh <--> lactate
+pyruvate_decarboxylase,ethanol fermentation,pyruvate <--> acetate + co2
+alcohol_dehydrogenase,ethanol fermentation,acetate + nadh <--> etoh
+pepck,gluconeogenesis,malate + atp <--> pep + co2
+fructose_1_6_bisphosphatase,gluconeogenesis,f16bp <--> f6p
+pyruvate_dehydrogenase_complex,tca,pyruvate <--> nadh + co2 + accoa
+citrate_synthase,tca,accoa + oaa <--> citrate
+aconitase,tca,citrate <--> isocitrate
+isocitrate_dehydrogenase,tca,isocitrate <--> nadh + aketoglutarate
+alpha_ketoglutarate_dehydrogenase,tca,aketoglutarate <--> nadh + succinylcoa
+succinyl_coa_synthetase,tca,succinylcoa <--> atp + succinate
+succinic_dehydrogenase,tca,succinate <--> fadh2 + fumarate
+fumarase,tca,fumarate<-->malate
+malate_dehydrogenase,tca,malate <--> oaa + nadh
+pyruvate_carboxylase,tca,pyruvate + co2 + atp <--> oaa
+g6p_dehydrogenase,oxidative_pentose_phosphate,g6p <--> 6phosphoglucanolacetone + nadph
+glucanolacetonase,oxidative_pentose_phosphate,6phosphoglucanolacetone <--> 6phosphoglucanoate
+6-phosphoglucanoate_dehydrogenase,oxidative_pentose_phosphate,6phosphoglucanoate <--> ru5p + co2 + nadph
+ru5p_isomerase,nonoxidative_pentose_phosphate,ru5p <--> r5p
+ru5p-3-epimerase,nonoxidative_pentose_phosphate,ru5p <--> xu5p
+transketolase_1,nonoxidative_pentose_phosphate,ru5p + xu5p <--> gap + s7p
+transaldolase,nonoxidative_pentose_phosphate,gap + s7p <--> e4p + f6p
+transketolase_2,nonoxidative_pentose_phosphate,e4p + xu5p <--> gap + f6p
+dahp_synthase,shikimate_pathway,e4p + pep <--> dahp
+3_dehydroquinate_synthase,shikimate_pathway,dahp <--> 3dehydroxyquinate
+3_dehydroquinate_dehydratase,shikimate_pathway,3dehydroxyquinate <--> 3dehydroshikimate
+shikimate_dehydrogenase,shikimate_pathway,3dehydroshikimate + nadph <--> shikimate
+shikimate_dehydrogenase_nadh,shikimate_pathway,3dehydroshikimate + nadh <--> shikimate
+shikimate_kinase,shikimate_pathway,shikimate + atp <--> shikimate3p
+epsp_synthase,shikimate_pathway,pep + shikimate3p <--> epsp
+chorismate_synthase,shikimate_pathway,epsp <--> chorismate
+chorismate_mutase,shikimate_pathway,chorismate <--> prephenate
+prephenate_dehydrogenase,shikimate_pathway,prephenate <--> nadh + co2 + 4hppa
+aromatic_aminotransferase,tyrosine_metabolism,4hppa + glutamate <--> tyrosine + aketoglutarate
+hpaBC,tyrosine_metabolism,tyrosine + nadh <--> levdopa

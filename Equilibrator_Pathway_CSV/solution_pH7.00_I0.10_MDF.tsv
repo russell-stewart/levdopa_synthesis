@@ -1,0 +1,248 @@
+!!!SBtab SBtabVersion='1.0' Document='model' Date='2020-3-4'							
+!!SBtab TableID='Reaction' TableType='Reaction' TableName='Reaction' DocumentName=' Document=' Unit=' SBtabVersion='1.0' Date='2020-3-4'							
+!ID	!Name	!ReactionFormula	!Identifiers:kegg.reaction				
+R_6_phosphof_R00756	R_6_phosphof_R00756	C_atp + C_d_fructose_6_phosphoric_acid <=> C_adp + C_d_fructose_16_bisphosphate	R00756				
+R_phosphohex_R00771	R_phosphohex_R00771	C_glucose_6_phosphate <=> C_d_fructose_6_phosphoric_acid	R00771				
+R_phosphogly_R01512	R_phosphogly_R01512	C_3_phospho_d_glycerate + C_atp <=> C_3_phospho_d_glyceroyl_phosphate + C_adp	R01512				
+R_phosphogly_R01518	R_phosphogly_R01518	C_2_phospho_d_glycerate <=> C_3_phospho_d_glycerate	R01518				
+R_aconitate__R01325	R_aconitate__R01325	C_citrate <=> C_cis_aconitate + C_h2o	R01325				
+R_aconitate__R01900	R_aconitate__R01900	C_cis_aconitate + C_h2o <=> C_isocitrate	R01900				
+R_nickel_tra_R00086	R_nickel_tra_R00086	C_atp + C_h2o <=> C_adp + C_orthophosphate	R00086				
+R_pyruvate_w_R00199	R_pyruvate_w_R00199	C_atp + C_pyruvate + C_h2o <=> C_amp + C_phosphoenolpyruvate + C_orthophosphate	R00199				
+R_adenylate__R00127	R_adenylate__R00127	C_amp + C_atp <=> 2 C_adp	R00127				
+R_diaphorase_R08549	R_diaphorase_R08549	C_2_oxoglutarate + C_coa + C_nad <=> C_co2 + C_nadh + C_succinyl_coa	R08549				
+R_ribulose_p_R01529	R_ribulose_p_R01529	C_d_ribulose_5_phosphate <=> C_d_xylulose_5_phosphate	R01529				
+R_citrate_re_R00351	R_citrate_re_R00351	C_acetyl_coa + C_oxaloacetate + C_h2o <=> C_citrate + C_coa	R00351				
+R_ribose_5_p_R01056	R_ribose_5_p_R01056	C_d_ribose_5_phosphate <=> C_d_ribulose_5_phosphate	R01056				
+R_ubiquinol__R09504	R_ubiquinol__R09504	0.5 C_oxygen + C_ubiquinol <=> C_ubiquinone + C_h2o	R09504				
+R_phosphopyr_R00658	R_phosphopyr_R00658	C_2_phospho_d_glycerate <=> C_phosphoenolpyruvate + C_h2o	R00658				
+R_succinate__R02164	R_succinate__R02164	C_ubiquinone + C_succinate <=> C_fumarate + C_ubiquinol	R02164				
+R_stk_R00405	R_stk_R00405	C_atp + C_coa + C_succinate <=> C_adp + C_orthophosphate + C_succinyl_coa	R00405				
+R_RXN_Q00066	R_RXN_Q00066	C_dl_glyceraldehyde_3_phosphate + C_d_sedoheptulose_7_phosphate <=> C_d_erythrose_4_phosphate + C_d_fructose_6_phosphoric_acid					
+R_RXN_Q00067	R_RXN_Q00067	C_d_ribose_5_phosphate + C_d_xylulose_5_phosphate <=> C_dl_glyceraldehyde_3_phosphate + C_d_sedoheptulose_7_phosphate					
+R_RXN_Q00068	R_RXN_Q00068	C_d_erythrose_4_phosphate + C_d_xylulose_5_phosphate <=> C_d_fructose_6_phosphoric_acid + C_dl_glyceraldehyde_3_phosphate					
+R_RXN_Q00069	R_RXN_Q00069	C_glycerone_phosphate <=> C_dl_glyceraldehyde_3_phosphate					
+R_RXN_Q00070	R_RXN_Q00070	C_d_fructose_16_bisphosphate <=> C_glycerone_phosphate + C_dl_glyceraldehyde_3_phosphate					
+R_fumarate_h_R01082	R_fumarate_h_R01082	C_fumarate + C_h2o <=> C_s_malate	R01082				
+R_RXN_Q00071	R_RXN_Q00071	C_dl_glyceraldehyde_3_phosphate + C_nad + C_orthophosphate <=> C_3_phospho_d_glyceroyl_phosphate + C_nadh					
+R_RXN_Q00072	R_RXN_Q00072	C_d_glucose + C_phosphoenolpyruvate <=> C_glucose_6_phosphate + C_pyruvate					
+R_glutamic_d_R00248	R_glutamic_d_R00248	C_l_glutamate + C_nadp + C_h2o <=> C_2_oxoglutarate + C_nadph + C_nh3	R00248				
+R_idp_R00267	R_idp_R00267	C_isocitrate + C_nadp <=> C_2_oxoglutarate + C_co2 + C_nadph	R00267				
+R_malate_deh_R00342	R_malate_deh_R00342	C_s_malate + C_nad <=> C_nadh + C_oxaloacetate	R00342				
+R_nadhubiqui_R02163	R_nadhubiqui_R02163	C_nadh + C_ubiquinone <=> C_nad + C_ubiquinol	R02163				
+R_diaphorase_R00209	R_diaphorase_R00209	C_coa + C_nad + C_pyruvate <=> C_acetyl_coa + C_co2 + C_nadh	R00209				
+R_3_deoxy_7__R01826	R_3_deoxy_7__R01826	C_d_erythrose_4_phosphate + C_phosphoenolpyruvate + C_h2o <=> C_2_dehydro_3_deoxy_d_arabino_heptonate_7_phosphate + C_orthophosphate	R01826				
+R_3_dehydroq_R03083	R_3_dehydroq_R03083	C_2_dehydro_3_deoxy_d_arabino_heptonate_7_phosphate <=> C_3_dehydroquinate + C_orthophosphate	R03083				
+R_3_dehydroq_R03084	R_3_dehydroq_R03084	C_3_dehydroquinate <=> C_3_dehydroshikimate + C_h2o	R03084				
+R_shikimate__R02413	R_shikimate__R02413	C_3_dehydroshikimate + C_nadph <=> C_shikimate + C_nadp	R02413				
+R_quinateshi_R06847	R_quinateshi_R06847	C_3_dehydroshikimate + C_nadh <=> C_shikimate + C_nad	R06847				
+R_shikimate__R02412	R_shikimate__R02412	C_shikimate + C_atp <=> C_shikimate_3_phosphate + C_adp	R02412				
+R_3_phosphos_R03460	R_3_phosphos_R03460	C_phosphoenolpyruvate + C_shikimate_3_phosphate <=> C_5_o_1_carboxyvinyl_3_phosphoshikimate + C_orthophosphate	R03460				
+R_chorismate_R01714	R_chorismate_R01714	C_5_o_1_carboxyvinyl_3_phosphoshikimate <=> C_chorismate + C_orthophosphate	R01714				
+R_chorismate_R01715	R_chorismate_R01715	C_chorismate <=> C_prephenate	R01715				
+R_RXN_Q00073	R_RXN_Q00073	C_prephenate + C_nad <=> C_nadh + C_co2 + C_caffeate					
+R_RXN_Q00074	R_RXN_Q00074	C_caffeate + C_l_glutamate <=> C_l_tyrosine + C_2_oxoglutarate					
+R_RXN_Q00075	R_RXN_Q00075	C_l_tyrosine + C_nadh + C_oxygen <=> C_34_dihydroxy_l_phenylalanine + C_nad + C_h2o					
+							
+!!SBtab TableID='Compound' TableType='Compound' TableName='Compound' DocumentName=' Document=' Unit=' SBtabVersion='1.0' Date='2020-3-4'							
+!ID	!Name	!Identifiers:kegg.compound	!IsConstant				
+C_cis_aconitate	C_cis_aconitate	C00417	FALSE				
+C_l_glutamate	C_l_glutamate	C00025	FALSE				
+C_ubiquinol	C_ubiquinol	C00390	FALSE				
+C_caffeate	C_caffeate	C01197	FALSE				
+C_atp	C_atp	C00002	FALSE				
+C_fumarate	C_fumarate	C00122	FALSE				
+C_shikimate	C_shikimate	C00493	FALSE				
+C_2_oxoglutarate	C_2_oxoglutarate	C00026	FALSE				
+C_l_tyrosine	C_l_tyrosine	C00082	FALSE				
+C_d_xylulose_5_phosphate	C_d_xylulose_5_phosphate	C00231	FALSE				
+C_oxaloacetate	C_oxaloacetate	C00036	FALSE				
+C_3_dehydroquinate	C_3_dehydroquinate	C00944	FALSE				
+C_nadp	C_nadp	C00006	FALSE				
+C_5_o_1_carboxyvinyl_3_phosphoshikimate	C_5_o_1_carboxyvinyl_3_phosphoshikimate	C01269	FALSE				
+C_nh3	C_nh3	C00014	FALSE				
+C_nadh	C_nadh	C00004	FALSE				
+C_amp	C_amp	C00020	FALSE				
+C_acetyl_coa	C_acetyl_coa	C00024	FALSE				
+C_3_phospho_d_glycerate	C_3_phospho_d_glycerate	C00197	FALSE				
+C_34_dihydroxy_l_phenylalanine	C_34_dihydroxy_l_phenylalanine	C00355	FALSE				
+C_prephenate	C_prephenate	C00254	FALSE				
+C_succinate	C_succinate	C00042	FALSE				
+C_d_ribose_5_phosphate	C_d_ribose_5_phosphate	C00117	FALSE				
+C_2_phospho_d_glycerate	C_2_phospho_d_glycerate	C00631	FALSE				
+C_nadph	C_nadph	C00005	FALSE				
+C_adp	C_adp	C00008	FALSE				
+C_shikimate_3_phosphate	C_shikimate_3_phosphate	C03175	FALSE				
+C_3_dehydroshikimate	C_3_dehydroshikimate	C02637	FALSE				
+C_isocitrate	C_isocitrate	C00311	FALSE				
+C_d_glucose	C_d_glucose	C00031	FALSE				
+C_3_phospho_d_glyceroyl_phosphate	C_3_phospho_d_glyceroyl_phosphate	C00236	FALSE				
+C_ubiquinone	C_ubiquinone	C00399	FALSE				
+C_glucose_6_phosphate	C_glucose_6_phosphate	C00092	FALSE				
+C_orthophosphate	C_orthophosphate	C00009	FALSE				
+C_chorismate	C_chorismate	C00251	FALSE				
+C_d_sedoheptulose_7_phosphate	C_d_sedoheptulose_7_phosphate	C05382	FALSE				
+C_h2o	C_h2o	C00001	FALSE				
+C_d_erythrose_4_phosphate	C_d_erythrose_4_phosphate	C00279	FALSE				
+C_d_fructose_6_phosphoric_acid	C_d_fructose_6_phosphoric_acid	C00085	FALSE				
+C_nad	C_nad	C00003	FALSE				
+C_coa	C_coa	C00010	FALSE				
+C_2_dehydro_3_deoxy_d_arabino_heptonate_7_phosphate	C_2_dehydro_3_deoxy_d_arabino_heptonate_7_phosphate	C04691	FALSE				
+C_oxygen	C_oxygen	C00007	FALSE				
+C_pyruvate	C_pyruvate	C00022	FALSE				
+C_dl_glyceraldehyde_3_phosphate	C_dl_glyceraldehyde_3_phosphate	C00661	FALSE				
+C_d_ribulose_5_phosphate	C_d_ribulose_5_phosphate	C00199	FALSE				
+C_succinyl_coa	C_succinyl_coa	C00091	FALSE				
+C_phosphoenolpyruvate	C_phosphoenolpyruvate	C00074	FALSE				
+C_co2	C_co2	C00011	FALSE				
+C_s_malate	C_s_malate	C00149	FALSE				
+C_citrate	C_citrate	C00158	FALSE				
+C_d_fructose_16_bisphosphate	C_d_fructose_16_bisphosphate	C00354	FALSE				
+C_glycerone_phosphate	C_glycerone_phosphate	C00111	FALSE				
+							
+!!SBtab TableID='Flux' TableType='Quantity' TableName='Flux' DocumentName=' Document=' Unit='mM/s' SBtabVersion='1.0' Date='2020-3-4'							
+!QuantityType	!Reaction	!Reaction:Identifiers:kegg.reaction	!Value				
+flux	R_6_phosphof_R00756	R00756	8.305899281				
+flux	R_phosphohex_R00771	R00771	10				
+flux	R_phosphogly_R01512	R01512	-13.22359712				
+flux	R_phosphogly_R01518	R01518	-13.22359712				
+flux	R_aconitate__R01325	R01325	3.058992806				
+flux	R_aconitate__R01900	R01900	3.058992806				
+flux	R_nickel_tra_R00086	R00086	8.39				
+flux	R_pyruvate_w_R00199	R00199	6.941007194				
+flux	R_adenylate__R00127	R00127	6.941007194				
+flux	R_diaphorase_R08549	R08549	3.058992806				
+flux	R_ribulose_p_R01529	R01529	-1.694100719				
+flux	R_citrate_re_R00351	R00351	3.058992806				
+flux	R_ribose_5_p_R01056	R01056	-1.694100719				
+flux	R_ubiquinol__R09504	R09504	18.35395683				
+flux	R_phosphopyr_R00658	R00658	13.22359712				
+flux	R_succinate__R02164	R02164	3.058992806				
+flux	R_stk_R00405	R00405	-3.058992806				
+flux	R_RXN_Q00066		1.694100719				
+flux	R_RXN_Q00067		1.694100719				
+flux	R_RXN_Q00068		-3.388201439				
+flux	R_RXN_Q00069		8.305899281				
+flux	R_RXN_Q00070		8.305899281				
+flux	R_fumarate_h_R01082	R01082	3.058992806				
+flux	R_RXN_Q00071		13.22359712				
+flux	R_RXN_Q00072		10				
+flux	R_glutamic_d_R00248	R00248	-5.082302158				
+flux	R_idp_R00267	R00267	3.058992806				
+flux	R_malate_deh_R00342	R00342	3.058992806				
+flux	R_nadhubiqui_R02163	R02163	15.29496403				
+flux	R_diaphorase_R00209	R00209	3.058992806				
+flux	R_3_deoxy_7__R01826	R01826	5.082302158				
+flux	R_3_dehydroq_R03083	R03083	5.082302158				
+flux	R_3_dehydroq_R03084	R03084	5.082302158				
+flux	R_shikimate__R02413	R02413	-2.023309353				
+flux	R_quinateshi_R06847	R06847	7.105611511				
+flux	R_shikimate__R02412	R02412	5.082302158				
+flux	R_3_phosphos_R03460	R03460	5.082302158				
+flux	R_chorismate_R01714	R01714	5.082302158				
+flux	R_chorismate_R01715	R01715	5.082302158				
+flux	R_RXN_Q00073		5.082302158				
+flux	R_RXN_Q00074		5.082302158				
+flux	R_RXN_Q00075		5.082302158				
+							
+!!SBtab TableID='ConcentrationConstraint' TableType='Quantity' TableName='ConcentrationConstraint' DocumentName=' Document=' Unit='M' SBtabVersion='1.0' Date='2020-3-4'							
+!QuantityType	!Compound	!Compound:Identifiers:kegg.compound	!Min	!Max			
+concentration	C_cis_aconitate	C00417	1.00E-06	0.01			
+concentration	C_l_glutamate	C00025	1.00E-06	0.01			
+concentration	C_ubiquinol	C00390	0.0001	0.0001			
+concentration	C_caffeate	C01197	1.00E-06	0.01			
+concentration	C_atp	C00002	0.005	0.005			
+concentration	C_fumarate	C00122	1.00E-06	0.01			
+concentration	C_shikimate	C00493	1.00E-06	0.01			
+concentration	C_2_oxoglutarate	C00026	1.00E-06	0.01			
+concentration	C_l_tyrosine	C00082	1.00E-06	0.01			
+concentration	C_d_xylulose_5_phosphate	C00231	1.00E-06	0.01			
+concentration	C_oxaloacetate	C00036	1.00E-06	0.01			
+concentration	C_3_dehydroquinate	C00944	1.00E-06	0.01			
+concentration	C_nadp	C00006	1.00E-05	1.00E-05			
+concentration	C_5_o_1_carboxyvinyl_3_phosphoshikimate	C01269	1.00E-06	0.01			
+concentration	C_nh3	C00014	0.01	0.01			
+concentration	C_nadh	C00004	0.0001	0.0001			
+concentration	C_amp	C00020	0.0005	0.0005			
+concentration	C_acetyl_coa	C00024	1.00E-06	0.01			
+concentration	C_3_phospho_d_glycerate	C00197	1.00E-06	0.01			
+concentration	C_34_dihydroxy_l_phenylalanine	C00355	1.00E-06	0.01			
+concentration	C_prephenate	C00254	1.00E-06	0.01			
+concentration	C_succinate	C00042	1.00E-06	0.01			
+concentration	C_d_ribose_5_phosphate	C00117	1.00E-06	0.01			
+concentration	C_2_phospho_d_glycerate	C00631	1.00E-06	0.01			
+concentration	C_nadph	C00005	0.0001	0.0001			
+concentration	C_adp	C00008	0.0005	0.0005			
+concentration	C_shikimate_3_phosphate	C03175	1.00E-06	0.01			
+concentration	C_3_dehydroshikimate	C02637	1.00E-06	0.01			
+concentration	C_isocitrate	C00311	1.00E-06	0.01			
+concentration	C_d_glucose	C00031	1.00E-06	0.01			
+concentration	C_3_phospho_d_glyceroyl_phosphate	C00236	1.00E-06	0.01			
+concentration	C_ubiquinone	C00399	0.0001	0.0001			
+concentration	C_glucose_6_phosphate	C00092	1.00E-06	0.01			
+concentration	C_orthophosphate	C00009	0.01	0.01			
+concentration	C_chorismate	C00251	1.00E-06	0.01			
+concentration	C_d_sedoheptulose_7_phosphate	C05382	1.00E-06	0.01			
+concentration	C_h2o	C00001	1	1			
+concentration	C_d_erythrose_4_phosphate	C00279	1.00E-06	0.01			
+concentration	C_d_fructose_6_phosphoric_acid	C00085	1.00E-06	0.01			
+concentration	C_nad	C00003	0.001	0.001			
+concentration	C_coa	C00010	0.001	0.001			
+concentration	C_2_dehydro_3_deoxy_d_arabino_heptonate_7_phosphate	C04691	1.00E-06	0.01			
+concentration	C_oxygen	C00007	0.000273	0.000273			
+concentration	C_pyruvate	C00022	1.00E-06	0.01			
+concentration	C_dl_glyceraldehyde_3_phosphate	C00661	1.00E-06	0.01			
+concentration	C_d_ribulose_5_phosphate	C00199	1.00E-06	0.01			
+concentration	C_succinyl_coa	C00091	1.00E-06	0.01			
+concentration	C_phosphoenolpyruvate	C00074	1.00E-06	0.01			
+concentration	C_co2	C00011	1.00E-05	1.00E-05			
+concentration	C_s_malate	C00149	1.00E-06	0.01			
+concentration	C_citrate	C00158	1.00E-06	0.01			
+concentration	C_d_fructose_16_bisphosphate	C00354	1.00E-06	0.01			
+concentration	C_glycerone_phosphate	C00111	1.00E-06	0.01			
+							
+!!SBtab TableID='Parameter' TableType='Quantity' TableName='Parameter' DocumentName=' Document=' Unit=' SBtabVersion='1.0' Date='2020-3-4' pH='7.00' IonicStrength='0.10' IonicStrengthUnit='M'							
+!QuantityType	!Reaction	!Compound	!Value	!Unit	!Reaction:Identifiers:kegg.reaction	!Compound:Identifiers:kegg.compound	!ID
+equilibrium constant	R_6_phosphof_R00756		419.5003044	dimensionless	R00756		kEQ_R_6_phosphof_R00756
+equilibrium constant	R_phosphohex_R00771		0.360889245	dimensionless	R00771		kEQ_R_phosphohex_R00771
+equilibrium constant	R_phosphogly_R01512		0.000582696	dimensionless	R01512		kEQ_R_phosphogly_R01512
+equilibrium constant	R_phosphogly_R01518		5.489698833	dimensionless	R01518		kEQ_R_phosphogly_R01518
+equilibrium constant	R_aconitate__R01325		0.034881643	dimensionless	R01325		kEQ_R_aconitate__R01325
+equilibrium constant	R_aconitate__R01900		1.318488336	dimensionless	R01900		kEQ_R_aconitate__R01900
+equilibrium constant	R_nickel_tra_R00086		42296.11171	dimensionless	R00086		kEQ_R_nickel_tra_R00086
+equilibrium constant	R_pyruvate_w_R00199		0.212023942	dimensionless	R00199		kEQ_R_pyruvate_w_R00199
+equilibrium constant	R_adenylate__R00127		2.804234607	dimensionless	R00127		kEQ_R_adenylate__R00127
+equilibrium constant	R_diaphorase_R08549		59418.13293	dimensionless	R08549		kEQ_R_diaphorase_R08549
+equilibrium constant	R_nickel_tra_R00086		2.36E-05	dimensionless	R00086		kEQ_R_nickel_tra_R00086
+equilibrium constant	R_ribulose_p_R01529		3.896868401	dimensionless	R01529		kEQ_R_ribulose_p_R01529
+equilibrium constant	R_citrate_re_R00351		1162558.637	dimensionless	R00351		kEQ_R_citrate_re_R00351
+equilibrium constant	R_ribose_5_p_R01056		0.458186286	dimensionless	R01056		kEQ_R_ribose_5_p_R01056
+equilibrium constant	R_ubiquinol__R09504		2.88E+25	dimensionless	R09504		kEQ_R_ubiquinol__R09504
+equilibrium constant	R_phosphopyr_R00658		5.195720022	dimensionless	R00658		kEQ_R_phosphopyr_R00658
+equilibrium constant	R_succinate__R02164		5989.465985	dimensionless	R02164		kEQ_R_succinate__R02164
+equilibrium constant	R_stk_R00405		2.107321802	dimensionless	R00405		kEQ_R_stk_R00405
+equilibrium constant	R_RXN_Q00066		0.863193223	dimensionless			kEQ_R_RXN_Q00066
+equilibrium constant	R_RXN_Q00067		7.183784747	dimensionless			kEQ_R_RXN_Q00067
+equilibrium constant	R_RXN_Q00068		87.48041163	dimensionless			kEQ_R_RXN_Q00068
+equilibrium constant	R_RXN_Q00069		0.170263168	dimensionless			kEQ_R_RXN_Q00069
+equilibrium constant	R_RXN_Q00070		0.000524401	dimensionless			kEQ_R_RXN_Q00070
+equilibrium constant	R_fumarate_h_R01082		4.024760115	dimensionless	R01082		kEQ_R_fumarate_h_R01082
+equilibrium constant	R_RXN_Q00071		0.027882719	dimensionless			kEQ_R_RXN_Q00071
+equilibrium constant	R_RXN_Q00072		75494961.47	dimensionless			kEQ_R_RXN_Q00072
+equilibrium constant	R_glutamic_d_R00248		1.51E-07	dimensionless	R00248		kEQ_R_glutamic_d_R00248
+equilibrium constant	R_idp_R00267		0.075742779	dimensionless	R00267		kEQ_R_idp_R00267
+equilibrium constant	R_malate_deh_R00342		4.82E-06	dimensionless	R00342		kEQ_R_malate_deh_R00342
+equilibrium constant	R_nadhubiqui_R02163		7.07E+14	dimensionless	R02163		kEQ_R_nadhubiqui_R02163
+equilibrium constant	R_diaphorase_R00209		1550009.531	dimensionless	R00209		kEQ_R_diaphorase_R00209
+equilibrium constant	R_3_deoxy_7__R01826		1.41E+12	dimensionless	R01826		kEQ_R_3_deoxy_7__R01826
+equilibrium constant	R_3_dehydroq_R03083		8.45E+22	dimensionless	R03083		kEQ_R_3_dehydroq_R03083
+equilibrium constant	R_3_dehydroq_R03084		8.457751091	dimensionless	R03084		kEQ_R_3_dehydroq_R03084
+equilibrium constant	R_shikimate__R02413		1.11E+14	dimensionless	R02413		kEQ_R_shikimate__R02413
+equilibrium constant	R_quinateshi_R06847		7.43E+13	dimensionless	R06847		kEQ_R_quinateshi_R06847
+equilibrium constant	R_shikimate__R02412		8.299334566	dimensionless	R02412		kEQ_R_shikimate__R02412
+equilibrium constant	R_3_phosphos_R03460		172.325559	dimensionless	R03460		kEQ_R_3_phosphos_R03460
+equilibrium constant	R_chorismate_R01714		315814553.9	dimensionless	R01714		kEQ_R_chorismate_R01714
+equilibrium constant	R_chorismate_R01715		4933.410817	dimensionless	R01715		kEQ_R_chorismate_R01715
+equilibrium constant	R_RXN_Q00073		2.78E+12	dimensionless			kEQ_R_RXN_Q00073
+equilibrium constant	R_RXN_Q00074		9.81E-11	dimensionless			kEQ_R_RXN_Q00074
+equilibrium constant	R_RXN_Q00075		6.62E+85	dimensionless			kEQ_R_RXN_Q00075

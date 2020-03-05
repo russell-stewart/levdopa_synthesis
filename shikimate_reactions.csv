@@ -1,0 +1,14 @@
+Enzyme,Pathway,Reaction
+dahp_synth,shikimate_pathway,e4p_c + pep_c + h2o_c <--> dahp_c + pi_c
+dhq_synth,shikimate_pathway,dahp_c <--> dhq_c + pi_c
+DHquinase_I,shikimate_pathway,dhq_c <--> 3dhs_c + h2o_c
+shikimate_dh,shikimate_pathway,3dhs_c + nadph_c + h_c <--> shikimate_c + nadp_c
+shikimate_dh_nadh,shikimate_pathway,3dhs_c + nadh_c + h_c <--> shikimate_c + nad_c
+ski,shikimate_pathway,shikimate_c + atp_c <--> shikimate3p_c + adp_c
+epsp_synth,shikimate_pathway,pep_c + shikimate3p_c <--> epsp_c + pi_c
+chorismate_synth,shikimate_pathway,epsp_c <--> chorismate_c + pi_c
+chorismate_mut,shikimate_pathway,chorismate_c <--> prephenate_c
+prephenate_dh,shikimate_pathway,prephenate_c + nad_c <--> nadh_c + h_c + co2_c + 4hppa_c
+aromatic_aminotransferase,tyrosine_metabolism,4hppa_c + glu__L_c <--> tyr__L_c + akg_c
+hpaBC,tyrosine_metabolism,tyr__L_c + nadh_c + h_c + o2_c <--> levdopa_c + nad_c + h2o_c
+levdopa_t,transport,levdopa_c <--> levdopa_e
