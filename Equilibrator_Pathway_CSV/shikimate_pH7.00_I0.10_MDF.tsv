@@ -1,5 +1,5 @@
-!!!SBtab SBtabVersion='1.0' Document='model' Date='2020-3-4'							
-!!SBtab TableID='Reaction' TableType='Reaction' TableName='Reaction' DocumentName=' Document=' Unit=' SBtabVersion='1.0' Date='2020-3-4'							
+!!!SBtab SBtabVersion='1.0' Document='model' Date='2020-3-5'							
+!!SBtab TableID='Reaction' TableType='Reaction' TableName='Reaction' DocumentName=' Document=' Unit=' SBtabVersion='1.0' Date='2020-3-5'							
 !ID	!Name	!ReactionFormula	!Identifiers:kegg.reaction				
 R_3_deoxy_7__R01826	R_3_deoxy_7__R01826	C_d_erythrose_4_phosphate + C_phosphoenolpyruvate + C_h2o <=> C_2_dehydro_3_deoxy_d_arabino_heptonate_7_phosphate + C_orthophosphate	R01826				
 R_3_dehydroq_R03083	R_3_dehydroq_R03083	C_2_dehydro_3_deoxy_d_arabino_heptonate_7_phosphate <=> C_3_dehydroquinate + C_orthophosphate	R03083				
@@ -9,16 +9,15 @@ R_shikimate__R02412	R_shikimate__R02412	C_shikimate + C_atp <=> C_shikimate_3_ph
 R_3_phosphos_R03460	R_3_phosphos_R03460	C_phosphoenolpyruvate + C_shikimate_3_phosphate <=> C_5_o_1_carboxyvinyl_3_phosphoshikimate + C_orthophosphate	R03460				
 R_chorismate_R01714	R_chorismate_R01714	C_5_o_1_carboxyvinyl_3_phosphoshikimate <=> C_chorismate + C_orthophosphate	R01714				
 R_chorismate_R01715	R_chorismate_R01715	C_chorismate <=> C_prephenate	R01715				
-R_RXN_Q00063	R_RXN_Q00063	C_prephenate + C_nad <=> C_nadh + C_co2 + C_caffeate					
-R_RXN_Q00064	R_RXN_Q00064	C_caffeate + C_l_glutamate <=> C_l_tyrosine + C_2_oxoglutarate					
-R_RXN_Q00065	R_RXN_Q00065	C_l_tyrosine + C_nadh + C_oxygen <=> C_34_dihydroxy_l_phenylalanine + C_nad + C_h2o					
+R_hydroxyphe_R01728	R_hydroxyphe_R01728	C_prephenate + C_nad <=> C_nadh + C_co2 + C_3_4_hydroxyphenylpyruvate	R01728				
+R_tyrosine_t_R00734	R_tyrosine_t_R00734	C_3_4_hydroxyphenylpyruvate + C_l_glutamate <=> C_l_tyrosine + C_2_oxoglutarate	R00734				
+R_RXN_Q00093	R_RXN_Q00093	C_l_tyrosine + C_nadh + C_oxygen <=> C_34_dihydroxy_l_phenylalanine + C_nad + C_h2o					
 							
-!!SBtab TableID='Compound' TableType='Compound' TableName='Compound' DocumentName=' Document=' Unit=' SBtabVersion='1.0' Date='2020-3-4'							
+!!SBtab TableID='Compound' TableType='Compound' TableName='Compound' DocumentName=' Document=' Unit=' SBtabVersion='1.0' Date='2020-3-5'							
 !ID	!Name	!Identifiers:kegg.compound	!IsConstant				
 C_shikimate_3_phosphate	C_shikimate_3_phosphate	C03175	FALSE				
 C_l_glutamate	C_l_glutamate	C00025	FALSE				
 C_3_dehydroshikimate	C_3_dehydroshikimate	C02637	FALSE				
-C_caffeate	C_caffeate	C01197	FALSE				
 C_atp	C_atp	C00002	FALSE				
 C_shikimate	C_shikimate	C00493	FALSE				
 C_2_oxoglutarate	C_2_oxoglutarate	C00026	FALSE				
@@ -34,12 +33,13 @@ C_nad	C_nad	C00003	FALSE
 C_nadh	C_nadh	C00004	FALSE				
 C_orthophosphate	C_orthophosphate	C00009	FALSE				
 C_chorismate	C_chorismate	C00251	FALSE				
+C_3_4_hydroxyphenylpyruvate	C_3_4_hydroxyphenylpyruvate	C01179	FALSE				
 C_34_dihydroxy_l_phenylalanine	C_34_dihydroxy_l_phenylalanine	C00355	FALSE				
 C_phosphoenolpyruvate	C_phosphoenolpyruvate	C00074	FALSE				
 C_co2	C_co2	C00011	FALSE				
 C_adp	C_adp	C00008	FALSE				
 							
-!!SBtab TableID='Flux' TableType='Quantity' TableName='Flux' DocumentName=' Document=' Unit='mM/s' SBtabVersion='1.0' Date='2020-3-4'							
+!!SBtab TableID='Flux' TableType='Quantity' TableName='Flux' DocumentName=' Document=' Unit='mM/s' SBtabVersion='1.0' Date='2020-3-5'							
 !QuantityType	!Reaction	!Reaction:Identifiers:kegg.reaction	!Value				
 flux	R_3_deoxy_7__R01826	R01826	1				
 flux	R_3_dehydroq_R03083	R03083	1				
@@ -49,16 +49,15 @@ flux	R_shikimate__R02412	R02412	1
 flux	R_3_phosphos_R03460	R03460	1				
 flux	R_chorismate_R01714	R01714	1				
 flux	R_chorismate_R01715	R01715	1				
-flux	R_RXN_Q00063		1				
-flux	R_RXN_Q00064		1				
-flux	R_RXN_Q00065		1				
+flux	R_hydroxyphe_R01728	R01728	1				
+flux	R_tyrosine_t_R00734	R00734	1				
+flux	R_RXN_Q00093		1				
 							
-!!SBtab TableID='ConcentrationConstraint' TableType='Quantity' TableName='ConcentrationConstraint' DocumentName=' Document=' Unit='M' SBtabVersion='1.0' Date='2020-3-4'							
+!!SBtab TableID='ConcentrationConstraint' TableType='Quantity' TableName='ConcentrationConstraint' DocumentName=' Document=' Unit='M' SBtabVersion='1.0' Date='2020-3-5'							
 !QuantityType	!Compound	!Compound:Identifiers:kegg.compound	!Min	!Max			
 concentration	C_shikimate_3_phosphate	C03175	1.00E-06	0.01			
 concentration	C_l_glutamate	C00025	1.00E-06	0.01			
 concentration	C_3_dehydroshikimate	C02637	1.00E-06	0.01			
-concentration	C_caffeate	C01197	1.00E-06	0.01			
 concentration	C_atp	C00002	0.005	0.005			
 concentration	C_shikimate	C00493	1.00E-06	0.01			
 concentration	C_2_oxoglutarate	C00026	1.00E-06	0.01			
@@ -74,12 +73,13 @@ concentration	C_nad	C00003	0.001	0.001
 concentration	C_nadh	C00004	0.0001	0.0001			
 concentration	C_orthophosphate	C00009	0.01	0.01			
 concentration	C_chorismate	C00251	1.00E-06	0.01			
+concentration	C_3_4_hydroxyphenylpyruvate	C01179	1.00E-06	0.01			
 concentration	C_34_dihydroxy_l_phenylalanine	C00355	1.00E-06	0.01			
 concentration	C_phosphoenolpyruvate	C00074	1.00E-06	0.01			
 concentration	C_co2	C00011	1.00E-05	1.00E-05			
 concentration	C_adp	C00008	0.0005	0.0005			
 							
-!!SBtab TableID='Parameter' TableType='Quantity' TableName='Parameter' DocumentName=' Document=' Unit=' SBtabVersion='1.0' Date='2020-3-4' pH='7.00' IonicStrength='0.10' IonicStrengthUnit='M'							
+!!SBtab TableID='Parameter' TableType='Quantity' TableName='Parameter' DocumentName=' Document=' Unit=' SBtabVersion='1.0' Date='2020-3-5' pH='7.00' IonicStrength='0.10' IonicStrengthUnit='M'							
 !QuantityType	!Reaction	!Compound	!Value	!Unit	!Reaction:Identifiers:kegg.reaction	!Compound:Identifiers:kegg.compound	!ID
 equilibrium constant	R_3_deoxy_7__R01826		1.41206E+12	dimensionless	R01826		kEQ_R_3_deoxy_7__R01826
 equilibrium constant	R_3_dehydroq_R03083		8.45E+22	dimensionless	R03083		kEQ_R_3_dehydroq_R03083
@@ -89,6 +89,6 @@ equilibrium constant	R_shikimate__R02412		8.299334566	dimensionless	R02412		kEQ_
 equilibrium constant	R_3_phosphos_R03460		172.325559	dimensionless	R03460		kEQ_R_3_phosphos_R03460
 equilibrium constant	R_chorismate_R01714		315814553.9	dimensionless	R01714		kEQ_R_chorismate_R01714
 equilibrium constant	R_chorismate_R01715		4933.410817	dimensionless	R01715		kEQ_R_chorismate_R01715
-equilibrium constant	R_RXN_Q00063		2.7755E+12	dimensionless			kEQ_R_RXN_Q00063
-equilibrium constant	R_RXN_Q00064		9.81E-11	dimensionless			kEQ_R_RXN_Q00064
-equilibrium constant	R_RXN_Q00065		6.62E+85	dimensionless			kEQ_R_RXN_Q00065
+equilibrium constant	R_hydroxyphe_R01728		271.4733199	dimensionless	R01728		kEQ_R_hydroxyphe_R01728
+equilibrium constant	R_tyrosine_t_R00734		1.00326868	dimensionless	R00734		kEQ_R_tyrosine_t_R00734
+equilibrium constant	R_RXN_Q00093		6.62E+85	dimensionless			kEQ_R_RXN_Q00093

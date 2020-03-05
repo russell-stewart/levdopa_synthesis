@@ -1,11 +1,10 @@
-!!!SBtab SBtabVersion='1.0' Document='model' Date='2020-3-4'							
-!!SBtab TableID='Reaction' TableType='Reaction' TableName='Reaction' DocumentName=' Document=' Unit=' SBtabVersion='1.0' Date='2020-3-4'							
+!!!SBtab SBtabVersion='1.0' Document='model' Date='2020-3-5'							
+!!SBtab TableID='Reaction' TableType='Reaction' TableName='Reaction' DocumentName=' Document=' Unit=' SBtabVersion='1.0' Date='2020-3-5'							
 !ID	!Name	!ReactionFormula	!Identifiers:kegg.reaction				
 R_formate_c__R00212	R_formate_c__R00212	C_coa + C_pyruvate <=> C_acetyl_coa + C_formate	R00212				
 R_phosphohex_R00771	R_phosphohex_R00771	C_glucose_6_phosphate <=> C_d_fructose_6_phosphoric_acid	R00771				
 R_phosphogly_R01512	R_phosphogly_R01512	C_3_phospho_d_glycerate + C_atp <=> C_3_phospho_d_glyceroyl_phosphate + C_adp	R01512				
 R_phosphogly_R01518	R_phosphogly_R01518	C_2_phospho_d_glycerate <=> C_3_phospho_d_glycerate	R01518				
-R_nickel_tra_R00086	R_nickel_tra_R00086	C_atp + C_h2o <=> C_adp + C_orthophosphate	R00086				
 R_phosphoeno_R00341	R_phosphoeno_R00341	C_atp + C_oxaloacetate <=> C_adp + C_co2 + C_phosphoenolpyruvate	R00341				
 R_diaphorase_R08549	R_diaphorase_R08549	C_2_oxoglutarate + C_coa + C_nad <=> C_co2 + C_nadh + C_succinyl_coa	R08549				
 R_pyruvate_k_R00200	R_pyruvate_k_R00200	C_adp + C_phosphoenolpyruvate <=> C_atp + C_pyruvate	R00200				
@@ -15,15 +14,15 @@ R_ubiquinol__R09504	R_ubiquinol__R09504	0.5 C_oxygen + C_ubiquinol <=> C_ubiquin
 R_phosphopyr_R00658	R_phosphopyr_R00658	C_2_phospho_d_glycerate <=> C_phosphoenolpyruvate + C_h2o	R00658				
 R_succinate__R02164	R_succinate__R02164	C_ubiquinone + C_succinate <=> C_fumarate + C_ubiquinol	R02164				
 R_stk_R00405	R_stk_R00405	C_atp + C_coa + C_succinate <=> C_adp + C_orthophosphate + C_succinyl_coa	R00405				
-R_RXN_Q00076	R_RXN_Q00076	C_dl_glyceraldehyde_3_phosphate + C_d_sedoheptulose_7_phosphate <=> C_d_erythrose_4_phosphate + C_d_fructose_6_phosphoric_acid					
-R_RXN_Q00077	R_RXN_Q00077	C_d_ribose_5_phosphate + C_d_xylulose_5_phosphate <=> C_dl_glyceraldehyde_3_phosphate + C_d_sedoheptulose_7_phosphate					
-R_RXN_Q00078	R_RXN_Q00078	C_d_erythrose_4_phosphate + C_d_xylulose_5_phosphate <=> C_d_fructose_6_phosphoric_acid + C_dl_glyceraldehyde_3_phosphate					
-R_RXN_Q00079	R_RXN_Q00079	C_glycerone_phosphate <=> C_dl_glyceraldehyde_3_phosphate					
-R_RXN_Q00080	R_RXN_Q00080	C_d_fructose_16_bisphosphate <=> C_glycerone_phosphate + C_dl_glyceraldehyde_3_phosphate					
+R_RXN_Q00102	R_RXN_Q00102	C_dl_glyceraldehyde_3_phosphate + C_d_sedoheptulose_7_phosphate <=> C_d_erythrose_4_phosphate + C_d_fructose_6_phosphoric_acid					
+R_RXN_Q00103	R_RXN_Q00103	C_d_ribose_5_phosphate + C_d_xylulose_5_phosphate <=> C_dl_glyceraldehyde_3_phosphate + C_d_sedoheptulose_7_phosphate					
+R_RXN_Q00104	R_RXN_Q00104	C_d_erythrose_4_phosphate + C_d_xylulose_5_phosphate <=> C_d_fructose_6_phosphoric_acid + C_dl_glyceraldehyde_3_phosphate					
+R_RXN_Q00105	R_RXN_Q00105	C_glycerone_phosphate <=> C_dl_glyceraldehyde_3_phosphate					
+R_RXN_Q00106	R_RXN_Q00106	C_d_fructose_16_bisphosphate <=> C_glycerone_phosphate + C_dl_glyceraldehyde_3_phosphate					
 R_fructose_b_R00762	R_fructose_b_R00762	C_d_fructose_16_bisphosphate + C_h2o <=> C_d_fructose_6_phosphoric_acid + C_orthophosphate	R00762				
 R_fumarate_h_R01082	R_fumarate_h_R01082	C_fumarate + C_h2o <=> C_s_malate	R01082				
-R_RXN_Q00081	R_RXN_Q00081	C_dl_glyceraldehyde_3_phosphate + C_nad + C_orthophosphate <=> C_3_phospho_d_glyceroyl_phosphate + C_nadh					
-R_RXN_Q00082	R_RXN_Q00082	C_d_glucose + C_phosphoenolpyruvate <=> C_glucose_6_phosphate + C_pyruvate					
+R_RXN_Q00107	R_RXN_Q00107	C_dl_glyceraldehyde_3_phosphate + C_nad + C_orthophosphate <=> C_3_phospho_d_glyceroyl_phosphate + C_nadh					
+R_RXN_Q00108	R_RXN_Q00108	C_d_glucose + C_phosphoenolpyruvate <=> C_glucose_6_phosphate + C_pyruvate					
 R_glutamic_d_R00248	R_glutamic_d_R00248	C_l_glutamate + C_nadp + C_h2o <=> C_2_oxoglutarate + C_nadph + C_nh3	R00248				
 R_idp_R00267	R_idp_R00267	C_isocitrate + C_nadp <=> C_2_oxoglutarate + C_co2 + C_nadph	R00267				
 R_isocitrate_R00479	R_isocitrate_R00479	C_isocitrate <=> C_glyoxylate + C_succinate	R00479				
@@ -39,15 +38,14 @@ R_shikimate__R02412	R_shikimate__R02412	C_shikimate + C_atp <=> C_shikimate_3_ph
 R_3_phosphos_R03460	R_3_phosphos_R03460	C_phosphoenolpyruvate + C_shikimate_3_phosphate <=> C_5_o_1_carboxyvinyl_3_phosphoshikimate + C_orthophosphate	R03460				
 R_chorismate_R01714	R_chorismate_R01714	C_5_o_1_carboxyvinyl_3_phosphoshikimate <=> C_chorismate + C_orthophosphate	R01714				
 R_chorismate_R01715	R_chorismate_R01715	C_chorismate <=> C_prephenate	R01715				
-R_RXN_Q00083	R_RXN_Q00083	C_prephenate + C_nad <=> C_nadh + C_co2 + C_caffeate					
-R_RXN_Q00084	R_RXN_Q00084	C_caffeate + C_l_glutamate <=> C_l_tyrosine + C_2_oxoglutarate					
-R_RXN_Q00085	R_RXN_Q00085	C_l_tyrosine + C_nadh + C_oxygen <=> C_34_dihydroxy_l_phenylalanine + C_nad + C_h2o					
+R_hydroxyphe_R01728	R_hydroxyphe_R01728	C_prephenate + C_nad <=> C_nadh + C_co2 + C_3_4_hydroxyphenylpyruvate	R01728				
+R_tyrosine_t_R00734	R_tyrosine_t_R00734	C_3_4_hydroxyphenylpyruvate + C_l_glutamate <=> C_l_tyrosine + C_2_oxoglutarate	R00734				
+R_RXN_Q00109	R_RXN_Q00109	C_l_tyrosine + C_nadh + C_oxygen <=> C_34_dihydroxy_l_phenylalanine + C_nad + C_h2o					
 							
-!!SBtab TableID='Compound' TableType='Compound' TableName='Compound' DocumentName=' Document=' Unit=' SBtabVersion='1.0' Date='2020-3-4'							
+!!SBtab TableID='Compound' TableType='Compound' TableName='Compound' DocumentName=' Document=' Unit=' SBtabVersion='1.0' Date='2020-3-5'							
 !ID	!Name	!Identifiers:kegg.compound	!IsConstant				
 C_l_glutamate	C_l_glutamate	C00025	FALSE				
 C_ubiquinol	C_ubiquinol	C00390	FALSE				
-C_caffeate	C_caffeate	C01197	FALSE				
 C_atp	C_atp	C00002	FALSE				
 C_fumarate	C_fumarate	C00122	FALSE				
 C_shikimate	C_shikimate	C00493	FALSE				
@@ -63,6 +61,7 @@ C_nadh	C_nadh	C00004	FALSE
 C_3_phospho_d_glyceroyl_phosphate	C_3_phospho_d_glyceroyl_phosphate	C00236	FALSE				
 C_3_phospho_d_glycerate	C_3_phospho_d_glycerate	C00197	FALSE				
 C_5_o_1_carboxyvinyl_3_phosphoshikimate	C_5_o_1_carboxyvinyl_3_phosphoshikimate	C01269	FALSE				
+C_3_4_hydroxyphenylpyruvate	C_3_4_hydroxyphenylpyruvate	C01179	FALSE				
 C_34_dihydroxy_l_phenylalanine	C_34_dihydroxy_l_phenylalanine	C00355	FALSE				
 C_prephenate	C_prephenate	C00254	FALSE				
 C_succinate	C_succinate	C00042	FALSE				
@@ -98,13 +97,12 @@ C_s_malate	C_s_malate	C00149	FALSE
 C_d_fructose_16_bisphosphate	C_d_fructose_16_bisphosphate	C00354	FALSE				
 C_glycerone_phosphate	C_glycerone_phosphate	C00111	FALSE				
 							
-!!SBtab TableID='Flux' TableType='Quantity' TableName='Flux' DocumentName=' Document=' Unit='mM/s' SBtabVersion='1.0' Date='2020-3-4'							
+!!SBtab TableID='Flux' TableType='Quantity' TableName='Flux' DocumentName=' Document=' Unit='mM/s' SBtabVersion='1.0' Date='2020-3-5'							
 !QuantityType	!Reaction	!Reaction:Identifiers:kegg.reaction	!Value				
 flux	R_formate_c__R00212	R00212	484.2447761				
 flux	R_phosphohex_R00771	R00771	10				
 flux	R_phosphogly_R01512	R01512	185.8993035				
 flux	R_phosphogly_R01518	R01518	185.8993035				
-flux	R_nickel_tra_R00086	R00086	8.39				
 flux	R_phosphoeno_R00341	R00341	978.9930348				
 flux	R_diaphorase_R08549	R08549	10.50348259				
 flux	R_pyruvate_k_R00200	R00200	474.2447761				
@@ -114,15 +112,15 @@ flux	R_ubiquinol__R09504	R09504	1000
 flux	R_phosphopyr_R00658	R00658	-185.8993035				
 flux	R_succinate__R02164	R02164	494.7482587				
 flux	R_stk_R00405	R00405	-10.50348259				
-flux	R_RXN_Q00076		51.47482587				
-flux	R_RXN_Q00077		51.47482587				
-flux	R_RXN_Q00078		-102.9496517				
-flux	R_RXN_Q00079		-41.47482587				
-flux	R_RXN_Q00080		-41.47482587				
+flux	R_RXN_Q00102		51.47482587				
+flux	R_RXN_Q00103		51.47482587				
+flux	R_RXN_Q00104		-102.9496517				
+flux	R_RXN_Q00105		-41.47482587				
+flux	R_RXN_Q00106		-41.47482587				
 flux	R_fructose_b_R00762	R00762	41.47482587				
 flux	R_fumarate_h_R01082	R01082	494.7482587				
-flux	R_RXN_Q00081		-185.8993035				
-flux	R_RXN_Q00082		10				
+flux	R_RXN_Q00107		-185.8993035				
+flux	R_RXN_Q00108		10				
 flux	R_glutamic_d_R00248	R00248	340.3237811				
 flux	R_idp_R00267	R00267	-484.2447761				
 flux	R_isocitrate_R00479	R00479	484.2447761				
@@ -138,15 +136,14 @@ flux	R_shikimate__R02412	R02412	154.4244776
 flux	R_3_phosphos_R03460	R03460	154.4244776				
 flux	R_chorismate_R01714	R01714	154.4244776				
 flux	R_chorismate_R01715	R01715	154.4244776				
-flux	R_RXN_Q00083		154.4244776				
-flux	R_RXN_Q00084		154.4244776				
-flux	R_RXN_Q00085		154.4244776				
+flux	R_hydroxyphe_R01728	R01728	154.4244776				
+flux	R_tyrosine_t_R00734	R00734	154.4244776				
+flux	R_RXN_Q00109		154.4244776				
 							
-!!SBtab TableID='ConcentrationConstraint' TableType='Quantity' TableName='ConcentrationConstraint' DocumentName=' Document=' Unit='M' SBtabVersion='1.0' Date='2020-3-4'							
+!!SBtab TableID='ConcentrationConstraint' TableType='Quantity' TableName='ConcentrationConstraint' DocumentName=' Document=' Unit='M' SBtabVersion='1.0' Date='2020-3-5'							
 !QuantityType	!Compound	!Compound:Identifiers:kegg.compound	!Min	!Max			
 concentration	C_l_glutamate	C00025	1.00E-06	0.01			
 concentration	C_ubiquinol	C00390	0.0001	0.0001			
-concentration	C_caffeate	C01197	1.00E-06	0.01			
 concentration	C_atp	C00002	0.005	0.005			
 concentration	C_fumarate	C00122	1.00E-06	0.01			
 concentration	C_shikimate	C00493	1.00E-06	0.01			
@@ -162,6 +159,7 @@ concentration	C_nadh	C00004	0.0001	0.0001
 concentration	C_3_phospho_d_glyceroyl_phosphate	C00236	1.00E-06	0.01			
 concentration	C_3_phospho_d_glycerate	C00197	1.00E-06	0.01			
 concentration	C_5_o_1_carboxyvinyl_3_phosphoshikimate	C01269	1.00E-06	0.01			
+concentration	C_3_4_hydroxyphenylpyruvate	C01179	1.00E-06	0.01			
 concentration	C_34_dihydroxy_l_phenylalanine	C00355	1.00E-06	0.01			
 concentration	C_prephenate	C00254	1.00E-06	0.01			
 concentration	C_succinate	C00042	1.00E-06	0.01			
@@ -197,7 +195,7 @@ concentration	C_s_malate	C00149	1.00E-06	0.01
 concentration	C_d_fructose_16_bisphosphate	C00354	1.00E-06	0.01			
 concentration	C_glycerone_phosphate	C00111	1.00E-06	0.01			
 							
-!!SBtab TableID='Parameter' TableType='Quantity' TableName='Parameter' DocumentName=' Document=' Unit=' SBtabVersion='1.0' Date='2020-3-4' pH='7.00' IonicStrength='0.10' IonicStrengthUnit='M'							
+!!SBtab TableID='Parameter' TableType='Quantity' TableName='Parameter' DocumentName=' Document=' Unit=' SBtabVersion='1.0' Date='2020-3-5' pH='7.00' IonicStrength='0.10' IonicStrengthUnit='M'							
 !QuantityType	!Reaction	!Compound	!Value	!Unit	!Reaction:Identifiers:kegg.reaction	!Compound:Identifiers:kegg.compound	!ID
 equilibrium constant	R_formate_c__R00212		5243.591865	dimensionless	R00212		kEQ_R_formate_c__R00212
 equilibrium constant	R_phosphohex_R00771		0.360889245	dimensionless	R00771		kEQ_R_phosphohex_R00771
@@ -214,15 +212,15 @@ equilibrium constant	R_ubiquinol__R09504		2.88E+25	dimensionless	R09504		kEQ_R_u
 equilibrium constant	R_phosphopyr_R00658		5.195720022	dimensionless	R00658		kEQ_R_phosphopyr_R00658
 equilibrium constant	R_succinate__R02164		5989.465985	dimensionless	R02164		kEQ_R_succinate__R02164
 equilibrium constant	R_stk_R00405		2.107321802	dimensionless	R00405		kEQ_R_stk_R00405
-equilibrium constant	R_RXN_Q00076		0.863193223	dimensionless			kEQ_R_RXN_Q00076
-equilibrium constant	R_RXN_Q00077		7.183784747	dimensionless			kEQ_R_RXN_Q00077
-equilibrium constant	R_RXN_Q00078		87.48041163	dimensionless			kEQ_R_RXN_Q00078
-equilibrium constant	R_RXN_Q00079		0.170263168	dimensionless			kEQ_R_RXN_Q00079
-equilibrium constant	R_RXN_Q00080		0.000524401	dimensionless			kEQ_R_RXN_Q00080
+equilibrium constant	R_RXN_Q00102		0.863193223	dimensionless			kEQ_R_RXN_Q00102
+equilibrium constant	R_RXN_Q00103		7.183784747	dimensionless			kEQ_R_RXN_Q00103
+equilibrium constant	R_RXN_Q00104		87.48041163	dimensionless			kEQ_R_RXN_Q00104
+equilibrium constant	R_RXN_Q00105		0.170263168	dimensionless			kEQ_R_RXN_Q00105
+equilibrium constant	R_RXN_Q00106		0.000524401	dimensionless			kEQ_R_RXN_Q00106
 equilibrium constant	R_fructose_b_R00762		100.8249846	dimensionless	R00762		kEQ_R_fructose_b_R00762
 equilibrium constant	R_fumarate_h_R01082		4.024760115	dimensionless	R01082		kEQ_R_fumarate_h_R01082
-equilibrium constant	R_RXN_Q00081		0.027882719	dimensionless			kEQ_R_RXN_Q00081
-equilibrium constant	R_RXN_Q00082		75494961.47	dimensionless			kEQ_R_RXN_Q00082
+equilibrium constant	R_RXN_Q00107		0.027882719	dimensionless			kEQ_R_RXN_Q00107
+equilibrium constant	R_RXN_Q00108		75494961.47	dimensionless			kEQ_R_RXN_Q00108
 equilibrium constant	R_glutamic_d_R00248		1.51E-07	dimensionless	R00248		kEQ_R_glutamic_d_R00248
 equilibrium constant	R_idp_R00267		0.075742779	dimensionless	R00267		kEQ_R_idp_R00267
 equilibrium constant	R_isocitrate_R00479		0.030612495	dimensionless	R00479		kEQ_R_isocitrate_R00479
@@ -238,6 +236,6 @@ equilibrium constant	R_shikimate__R02412		8.299334566	dimensionless	R02412		kEQ_
 equilibrium constant	R_3_phosphos_R03460		172.325559	dimensionless	R03460		kEQ_R_3_phosphos_R03460
 equilibrium constant	R_chorismate_R01714		315814553.9	dimensionless	R01714		kEQ_R_chorismate_R01714
 equilibrium constant	R_chorismate_R01715		4933.410817	dimensionless	R01715		kEQ_R_chorismate_R01715
-equilibrium constant	R_RXN_Q00083		2.7755E+12	dimensionless			kEQ_R_RXN_Q00083
-equilibrium constant	R_RXN_Q00084		9.81E-11	dimensionless			kEQ_R_RXN_Q00084
-equilibrium constant	R_RXN_Q00085		6.62E+85	dimensionless			kEQ_R_RXN_Q00085
+equilibrium constant	R_hydroxyphe_R01728		271.4733199	dimensionless	R01728		kEQ_R_hydroxyphe_R01728
+equilibrium constant	R_tyrosine_t_R00734		1.00326868	dimensionless	R00734		kEQ_R_tyrosine_t_R00734
+equilibrium constant	R_RXN_Q00109		6.62E+85	dimensionless			kEQ_R_RXN_Q00109
