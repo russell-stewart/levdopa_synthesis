@@ -16,7 +16,7 @@
 
 <!-- General and theme style sheets -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/reveal.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/theme/serif.css" id="theme">
 
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
@@ -13219,7 +13219,7 @@ a.anchor-link {
 <li>Analysis<ul>
 <li>Black Box Stoichiometry</li>
 <li>Flux Balance Analysis</li>
-<li>Balance Double-Check</li>
+<li>Balance Sanity Check</li>
 <li>Thermodynamics</li>
 </ul>
 </li>
@@ -13662,7 +13662,7 @@ a.anchor-link {
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#load up everything</span>
@@ -13742,7 +13742,7 @@ unknown metabolite &#39;levdopa_e&#39; created
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">levdopa_synthesis</span><span class="o">.</span><span class="n">objective</span> <span class="o">=</span> <span class="s1">&#39;EX_levdopa_e&#39;</span><span class="c1">#maximize L-DOPA production</span>
@@ -13788,6 +13788,935 @@ Yield of levdopa from ammonia: 1.000000 mol/mol
 
 </div>
 </div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Aerobic,-with-Rich-Media">Aerobic, with Rich Media<a class="anchor-link" href="#Aerobic,-with-Rich-Media">&#182;</a></h1><p><em>What if both glutamate and ammonia are free to be used as nitrogen sources?</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
+<span class="n">levdopa_synthesis_with_glutamate</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">levdopa_synthesis</span><span class="p">)</span>
+<span class="c1">#allow glutamate to be used as a feedstock</span>
+<span class="n">levdopa_synthesis_with_glutamate</span><span class="o">.</span><span class="n">reactions</span><span class="o">.</span><span class="n">EX_glu__L_e</span><span class="o">.</span><span class="n">lower_bound</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1000</span>
+<span class="n">builder_glutamate</span> <span class="o">=</span> <span class="n">Builder</span><span class="p">(</span><span class="n">map_json</span> <span class="o">=</span> <span class="s1">&#39;full_map.json&#39;</span><span class="p">)</span>
+<span class="n">builder_glutamate</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">levdopa_synthesis_with_glutamate</span>
+<span class="n">builder_glutamate</span><span class="o">.</span><span class="n">highlight_missing</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">solution_glutamate</span> <span class="o">=</span> <span class="n">builder_glutamate</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective_sense</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">builder_glutamate</span><span class="o">.</span><span class="n">reaction_data</span> <span class="o">=</span> <span class="n">solution_glutamate</span><span class="o">.</span><span class="n">fluxes</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">solution_glutamate</span><span class="p">[</span><span class="s1">&#39;EX_glc__D_e&#39;</span><span class="p">])</span>
+<span class="n">Y_ldopa_glc</span> <span class="o">=</span> <span class="n">solution_glutamate</span><span class="p">[</span><span class="s1">&#39;EX_levdopa_e&#39;</span><span class="p">]</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">solution_glutamate</span><span class="p">[</span><span class="s1">&#39;EX_glc__D_e&#39;</span><span class="p">])</span>
+<span class="n">Y_ldopa_glu</span> <span class="o">=</span> <span class="n">solution_glutamate</span><span class="p">[</span><span class="s1">&#39;EX_levdopa_e&#39;</span><span class="p">]</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">solution_glutamate</span><span class="p">[</span><span class="s1">&#39;EX_glu__L_e&#39;</span><span class="p">])</span>
+<span class="n">pct_carbon_assimilated</span> <span class="o">=</span> <span class="n">solution_glutamate</span><span class="p">[</span><span class="s1">&#39;EX_levdopa_e&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">9</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">solution_glutamate</span><span class="p">[</span><span class="s1">&#39;EX_glc__D_e&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">+</span> <span class="n">solution_glutamate</span><span class="p">[</span><span class="s1">&#39;EX_glu__L_e&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Yield of levdopa from glucose: </span><span class="si">%f</span><span class="s1"> mol/mol; </span><span class="si">%f</span><span class="s1"> cmol/cmol&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">Y_ldopa_glc</span> <span class="p">,</span> <span class="mi">9</span><span class="o">/</span><span class="mi">6</span><span class="o">*</span><span class="n">Y_ldopa_glc</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Yield of levdopa from glutamate: </span><span class="si">%f</span><span class="s1"> mol/mol; </span><span class="si">%f</span><span class="s1"> cmol/cmol&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">Y_ldopa_glu</span> <span class="p">,</span> <span class="mi">9</span><span class="o">/</span><span class="mi">5</span><span class="o">*</span><span class="n">Y_ldopa_glu</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Percent of carbon from both glucose and glutamate into L-DOPA: </span><span class="si">%f</span><span class="s1"> cmol/cmol&#39;</span> <span class="o">%</span> <span class="n">pct_carbon_assimilated</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Yield of levdopa from glucose: 15.442448 mol/mol; 23.163672 cmol/cmol
+Yield of levdopa from glutamate: 0.312127 mol/mol; 0.561829 cmol/cmol
+Percent of carbon from both glucose and glutamate into L-DOPA: 0.548525 cmol/cmol
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="Escher_Maps/glutamate_fba.png" alt="Image"></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Anaerobic-Fermentation">Anaerobic Fermentation<a class="anchor-link" href="#Anaerobic-Fermentation">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">levdopa_synthesis_anaerobic</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">levdopa_synthesis</span><span class="p">)</span>
+<span class="c1">#knock out oxygen intake</span>
+<span class="n">levdopa_synthesis_anaerobic</span><span class="o">.</span><span class="n">reactions</span><span class="o">.</span><span class="n">O2t</span><span class="o">.</span><span class="n">knock_out</span><span class="p">()</span>
+<span class="n">builder_anaerobic</span> <span class="o">=</span> <span class="n">Builder</span><span class="p">(</span><span class="n">map_json</span> <span class="o">=</span> <span class="s1">&#39;full_map.json&#39;</span><span class="p">)</span>
+<span class="n">builder_anaerobic</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">levdopa_synthesis_anaerobic</span>
+<span class="n">builder_anaerobic</span><span class="o">.</span><span class="n">highlight_missing</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">solution_anaerobic</span> <span class="o">=</span> <span class="n">builder_anaerobic</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective_sense</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">builder_anaerobic</span><span class="o">.</span><span class="n">reaction_data</span> <span class="o">=</span> <span class="n">solution_anaerobic</span><span class="o">.</span><span class="n">fluxes</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">solution_anaerobic</span><span class="p">[</span><span class="s1">&#39;EX_glc__D_e&#39;</span><span class="p">])</span>
+<span class="n">Y_ldopa_glc</span> <span class="o">=</span> <span class="n">solution_anaerobic</span><span class="p">[</span><span class="s1">&#39;EX_levdopa_e&#39;</span><span class="p">]</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">solution_anaerobic</span><span class="p">[</span><span class="s1">&#39;EX_glc__D_e&#39;</span><span class="p">])</span>
+<span class="n">Y_ldopa_nh4</span> <span class="o">=</span> <span class="n">solution_anaerobic</span><span class="p">[</span><span class="s1">&#39;EX_levdopa_e&#39;</span><span class="p">]</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">solution_anaerobic</span><span class="p">[</span><span class="s1">&#39;EX_nh4_e&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Yield of levdopa from glucose: </span><span class="si">%f</span><span class="s1"> mol/mol; </span><span class="si">%f</span><span class="s1"> cmol/cmol&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">Y_ldopa_glc</span> <span class="p">,</span> <span class="mi">9</span><span class="o">/</span><span class="mi">6</span><span class="o">*</span><span class="n">Y_ldopa_glc</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Yield of levdopa from ammonia: </span><span class="si">%f</span><span class="s1"> mol/mol&#39;</span> <span class="o">%</span> <span class="n">Y_ldopa_nh4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Yield of levdopa from glucose: -0.000000 mol/mol; -0.000000 cmol/cmol
+Yield of levdopa from ammonia: nan mol/mol
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Applications/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:14 <span class="ansi-red-intense-fg ansi-bold">RuntimeWarning</span>: invalid value encountered in double_scalars
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="Escher_Maps/anaerobic_fba.png" alt="Image"></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Balance-Sanity-Check">Balance Sanity Check<a class="anchor-link" href="#Balance-Sanity-Check">&#182;</a></h1><ul>
+<li><strong><em>Before we head on to thermodynamics, do our flux balance analysis solutions obey black box atom balances?</em></strong></li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A valid flux solution $q$ will satisfy $Sq=0$, where $S$ is the species stoichiometric matrix.</p>
+
+</div>
+</div>
+</div></div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="c1">#Read in csv</span>
+<span class="n">solution</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;FBA_results/aerobic.csv&#39;</span> <span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">solution_glu</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;FBA_results/aerobic_glutamate.csv&#39;</span> <span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="c1">#Extract the exchange fluxes</span>
+<span class="n">solution_exchanges</span> <span class="o">=</span> <span class="n">solution</span><span class="p">[</span><span class="n">solution</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;EX_&#39;</span><span class="p">)]</span>
+<span class="n">solution_glu_exchanges</span> <span class="o">=</span> <span class="n">solution_glu</span><span class="p">[</span><span class="n">solution_glu</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;EX_&#39;</span><span class="p">)]</span>
+<span class="c1">#FBA returned some fluxes that are near-zero but not zero because of double roundoff errors.</span>
+<span class="n">solution_exchanges</span> <span class="o">=</span> <span class="n">solution_exchanges</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;abs(fluxes) &gt; .0000000001&#39;</span><span class="p">)</span>
+<span class="n">solution_glu_exchanges</span> <span class="o">=</span> <span class="n">solution_glu_exchanges</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;abs(fluxes) &gt; .0000000001&#39;</span><span class="p">)</span>
+<span class="c1">#Convert the indexes into just the species name, without EX_ or _e</span>
+<span class="n">solution_index</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;_[^_]+_</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">solution_exchanges</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">solution_index</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">solution_index</span><span class="p">]</span>
+<span class="n">solution_exchanges</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">solution_index</span>
+<span class="n">solution_glu_index</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;_[^_]+_</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">solution_glu_exchanges</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">solution_glu_index</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">solution_glu_index</span><span class="p">]</span>
+<span class="n">solution_glu_exchanges</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">solution_glu_index</span>
+<span class="c1">#Read in stoichiometries of our exchanged metabolites</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;exchange_stoichiometries.xls&#39;</span> <span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Stoichiometric Matrix&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aerobic Solution Exchange Fluxes (mM/min)&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">solution_exchanges</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aerobic + Glutamate Solution Exchange Fluxes (mM/min)&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">solution_glu_exchanges</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Stoichiometric Matrix
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>co2</th>
+      <th>for</th>
+      <th>glc</th>
+      <th>glu</th>
+      <th>h</th>
+      <th>h2o</th>
+      <th>o2</th>
+      <th>levdopa</th>
+      <th>nh4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c</th>
+      <td>1</td>
+      <td>1</td>
+      <td>6</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>9</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>h</th>
+      <td>0</td>
+      <td>1</td>
+      <td>12</td>
+      <td>8</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>11</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>o</th>
+      <td>2</td>
+      <td>2</td>
+      <td>6</td>
+      <td>4</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Aerobic Solution Exchange Fluxes (mM/min)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>co2</th>
+      <th>glc</th>
+      <th>h</th>
+      <th>h2o</th>
+      <th>nh4</th>
+      <th>o2</th>
+      <th>levdopa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>fluxes</th>
+      <td>14.259281</td>
+      <td>-10.0</td>
+      <td>5.082302</td>
+      <td>39.670791</td>
+      <td>-5.082302</td>
+      <td>-14.259281</td>
+      <td>5.082302</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Aerobic + Glutamate Solution Exchange Fluxes (mM/min)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>co2</th>
+      <th>for</th>
+      <th>glc</th>
+      <th>glu</th>
+      <th>h</th>
+      <th>h2o</th>
+      <th>nh4</th>
+      <th>o2</th>
+      <th>levdopa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>fluxes</th>
+      <td>659.676219</td>
+      <td>484.244776</td>
+      <td>-10.0</td>
+      <td>-494.748259</td>
+      <td>-350.827264</td>
+      <td>442.30209</td>
+      <td>340.323781</td>
+      <td>-654.424478</td>
+      <td>154.424478</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aerobic Solution Element Balance (mM/min)&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">solution_exchanges</span><span class="o">.</span><span class="n">index</span><span class="p">]</span> <span class="o">@</span> <span class="n">solution_exchanges</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Aerobic Solution Element Balance (mM/min)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fluxes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c</th>
+      <td>-4.440892e-15</td>
+    </tr>
+    <tr>
+      <th>h</th>
+      <td>-4.174439e-14</td>
+    </tr>
+    <tr>
+      <th>o</th>
+      <td>-7.105427e-15</td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td>0.000000e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aerobic Solution + Glutamate Element Balance (mM/min)&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">solution_glu_exchanges</span><span class="o">.</span><span class="n">index</span><span class="p">]</span> <span class="o">@</span> <span class="n">solution_glu_exchanges</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Aerobic Solution + Glutamate Element Balance (mM/min)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fluxes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c</th>
+      <td>7.105427e-13</td>
+    </tr>
+    <tr>
+      <th>h</th>
+      <td>1.222134e-12</td>
+    </tr>
+    <tr>
+      <th>o</th>
+      <td>-1.136868e-13</td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td>8.526513e-14</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Thermodynamics">Thermodynamics<a class="anchor-link" href="#Thermodynamics">&#182;</a></h1><ul>
+<li><p><strong>_Are our two aerobic FBA solutions spontaneous? How do their $\Delta G^{'}_m$ compare?_</strong></p>
+</li>
+<li><p><strong>_Can we use minimum driving force analysis with <code>equilibrator_pathway</code> to pinpoint bottlenecks and steps amenable to flux control?_</strong></p>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#load up everything</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">cobra</span>
+<span class="kn">from</span> <span class="nn">cobra</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">Reaction</span><span class="p">,</span> <span class="n">Metabolite</span>
+<span class="n">cobra_config</span> <span class="o">=</span> <span class="n">cobra</span><span class="o">.</span><span class="n">Configuration</span><span class="p">()</span>
+<span class="kn">import</span> <span class="nn">escher</span>
+<span class="kn">from</span> <span class="nn">escher</span> <span class="kn">import</span> <span class="n">Builder</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">import</span> <span class="nn">cobra.test</span>
+<span class="kn">import</span> <span class="nn">equilibrator_api</span>
+<span class="kn">from</span> <span class="nn">equilibrator_api</span> <span class="kn">import</span> <span class="n">Q_</span>
+<span class="kn">from</span> <span class="nn">equilibrator_api</span> <span class="kn">import</span> <span class="n">get_compound</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">sbtab</span> <span class="kn">import</span> <span class="n">SBtab</span>
+<span class="kn">from</span> <span class="nn">equilibrator_pathway</span> <span class="kn">import</span> <span class="n">Pathway</span>
+
+<span class="n">network</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;shikimate_reactions.csv&#39;</span> <span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="c1">#shikimate related reactions to add</span>
+<span class="n">sinks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;sinks.csv&#39;</span> <span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="c1">#sinks to add</span>
+
+<span class="n">levdopa_synthesis</span> <span class="o">=</span> <span class="n">cobra</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">load_json_model</span><span class="p">(</span><span class="s2">&quot;e_coli_core.json&quot;</span><span class="p">)</span><span class="c1">#e coli central metabolism model from BiGG</span>
+<span class="c1">#levdopa_synthesis.solver = &#39;cplex&#39;</span>
+
+<span class="c1">#define intracellular reactions not in central metabolism model</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">myenzyme</span> <span class="p">,</span> <span class="n">mypathway</span> <span class="p">,</span> <span class="n">myreaction</span><span class="p">)</span> <span class="ow">in</span> <span class="n">network</span><span class="o">.</span><span class="n">itertuples</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="n">rxn</span> <span class="o">=</span> <span class="n">Reaction</span><span class="p">(</span><span class="n">myenzyme</span><span class="p">)</span>
+    <span class="n">levdopa_synthesis</span><span class="o">.</span><span class="n">add_reactions</span><span class="p">([</span><span class="n">rxn</span><span class="p">])</span>
+    <span class="n">rxn</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">myenzyme</span>
+    <span class="n">rxn</span><span class="o">.</span><span class="n">subsystem</span> <span class="o">=</span> <span class="n">mypathway</span>
+    <span class="n">rxn</span><span class="o">.</span><span class="n">build_reaction_from_string</span><span class="p">(</span><span class="n">myreaction</span><span class="p">)</span>
+
+<span class="c1">#define extra transport reactions not in central metabolism model</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">mymetabolite</span> <span class="p">,</span> <span class="n">mydirection</span><span class="p">)</span> <span class="ow">in</span> <span class="n">sinks</span><span class="o">.</span><span class="n">itertuples</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="n">myreaction</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> --&gt;&#39;</span> <span class="o">%</span> <span class="n">mymetabolite</span>
+    <span class="n">rxn</span> <span class="o">=</span> <span class="n">Reaction</span><span class="p">(</span><span class="s1">&#39;EX_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">mymetabolite</span><span class="p">)</span>
+    <span class="n">levdopa_synthesis</span><span class="o">.</span><span class="n">add_reactions</span><span class="p">([</span><span class="n">rxn</span><span class="p">])</span>
+    <span class="n">rxn</span><span class="o">.</span><span class="n">subsystem</span> <span class="o">=</span> <span class="s1">&#39;Extracellular exchange&#39;</span>
+    <span class="n">rxn</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_transport&#39;</span> <span class="o">%</span> <span class="n">mymetabolite</span>
+    <span class="n">rxn</span><span class="o">.</span><span class="n">build_reaction_from_string</span><span class="p">(</span><span class="n">myreaction</span><span class="p">)</span>
+    <span class="n">rxn</span><span class="o">.</span><span class="n">lower_bound</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="n">rxn</span><span class="o">.</span><span class="n">upper_bound</span> <span class="o">=</span> <span class="mf">1000.</span>
+
+<span class="n">solution</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;FBA_results/aerobic.csv&#39;</span> <span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">solution_glutamate</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;FBA_results/aerobic_glutamate.csv&#39;</span> <span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">solution_anaerobic</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;FBA_results/anaerobic.csv&#39;</span> <span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>unknown metabolite &#39;dahp_c&#39; created
+unknown metabolite &#39;dhq_c&#39; created
+unknown metabolite &#39;3dhs_c&#39; created
+unknown metabolite &#39;shikimate_c&#39; created
+unknown metabolite &#39;shikimate3p_c&#39; created
+unknown metabolite &#39;epsp_c&#39; created
+unknown metabolite &#39;chorismate_c&#39; created
+unknown metabolite &#39;prephenate_c&#39; created
+unknown metabolite &#39;4hppa_c&#39; created
+unknown metabolite &#39;tyr__L_c&#39; created
+unknown metabolite &#39;levdopa_c&#39; created
+unknown metabolite &#39;levdopa_e&#39; created
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Import e coli core model in json format</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;e_coli_core.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">ecolicore</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">metabolites</span> <span class="o">=</span> <span class="n">ecolicore</span><span class="p">[</span><span class="s1">&#39;metabolites&#39;</span><span class="p">]</span>
+
+<span class="n">custom_metabolites</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;shikimate_metabolites.csv&#39;</span> <span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#Returns KEGG ID for a given BiGG ID</span>
+<span class="k">def</span> <span class="nf">getKEGG</span><span class="p">(</span><span class="n">met_id</span><span class="p">):</span>
+    <span class="c1">#Search for metabolite by BiGG ID in the e coli core model</span>
+    <span class="n">entry</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">met</span><span class="p">:</span> <span class="n">met</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">met_id</span><span class="p">,</span> <span class="n">metabolites</span><span class="p">))</span>
+    <span class="c1">#If we get a hit, return it</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">entry</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;annotation&#39;</span><span class="p">][</span><span class="s1">&#39;kegg.compound&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1">#If else, it&#39;s probably one of my custom metabolites</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">custom_metabolites</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">met_id</span> <span class="p">,</span> <span class="s1">&#39;KEGG_ID&#39;</span><span class="p">]</span>
+    
+
+<span class="c1">#Takes a reaction object and converts it into an Equilibrator-parsable string</span>
+<span class="k">def</span> <span class="nf">stringReaction</span><span class="p">(</span><span class="n">rxn</span> <span class="p">,</span> <span class="n">for_pathway</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="p">{</span><span class="n">met</span> <span class="p">:</span> <span class="n">stoich</span> <span class="k">for</span> <span class="n">met</span> <span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">rxn</span><span class="o">.</span><span class="n">metabolites</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">stoich</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">}</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="p">{</span><span class="n">met</span> <span class="p">:</span> <span class="n">stoich</span> <span class="k">for</span> <span class="n">met</span> <span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">rxn</span><span class="o">.</span><span class="n">metabolites</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">stoich</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">}</span>
+    <span class="n">rxn_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">for_pathway</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">met</span> <span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">left</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">rxn_string</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1"> kegg:</span><span class="si">%s</span><span class="s1"> + &#39;</span> <span class="o">%</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">stoich</span> <span class="p">,</span> <span class="n">getKEGG</span><span class="p">(</span><span class="n">met</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+
+        <span class="n">rxn_string</span> <span class="o">=</span> <span class="n">rxn_string</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">rxn_string</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;= &#39;</span>
+        <span class="k">for</span> <span class="n">met</span> <span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">right</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">rxn_string</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1"> kegg:</span><span class="si">%s</span><span class="s1"> + &#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">stoich</span> <span class="p">,</span> <span class="n">getKEGG</span><span class="p">(</span><span class="n">met</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+
+        <span class="n">rxn_string</span> <span class="o">=</span> <span class="n">rxn_string</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">rxn_string</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1">#return in equilibrator pathway-happy format if you so request. (no kegg or leading 1&#39;s)</span>
+        <span class="k">for</span> <span class="n">met</span> <span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">left</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">stoich</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">rxn_string</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> + &#39;</span> <span class="o">%</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">stoich</span> <span class="p">,</span> <span class="n">getKEGG</span><span class="p">(</span><span class="n">met</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">rxn_string</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> + &#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">getKEGG</span><span class="p">(</span><span class="n">met</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+
+        <span class="n">rxn_string</span> <span class="o">=</span> <span class="n">rxn_string</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">rxn_string</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;&lt;=&gt; &#39;</span>
+        <span class="k">for</span> <span class="n">met</span> <span class="p">,</span> <span class="n">stoich</span> <span class="ow">in</span> <span class="n">right</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">stoich</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">rxn_string</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> + &#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">stoich</span> <span class="p">,</span> <span class="n">getKEGG</span><span class="p">(</span><span class="n">met</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">rxn_string</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> + &#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">getKEGG</span><span class="p">(</span><span class="n">met</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+
+        <span class="n">rxn_string</span> <span class="o">=</span> <span class="n">rxn_string</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">rxn_string</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">rxn_string</span><span class="p">)</span>
+<span class="c1">#Gets delta go or delta gm for each reaction in a data frame</span>
+<span class="k">def</span> <span class="nf">getG</span><span class="p">(</span><span class="n">flux_df</span> <span class="p">,</span> <span class="n">useGm</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="c1">#this will store the string form g values and the indices in parallel arrays</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1">#iterate over every reaction that isn&#39;t an exchange or transport</span>
+    <span class="k">for</span> <span class="n">rxn</span> <span class="ow">in</span> <span class="n">flux_df</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">rxn</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;EX_&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">rxn</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;_t&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">rxn</span> <span class="o">!=</span> <span class="s1">&#39;H2Ot&#39;</span> <span class="ow">and</span> <span class="n">rxn</span> <span class="o">!=</span> <span class="s1">&#39;NH4t&#39;</span> <span class="ow">and</span> <span class="n">rxn</span> <span class="o">!=</span> <span class="s1">&#39;CO2t&#39;</span> <span class="ow">and</span> <span class="n">rxn</span> <span class="o">!=</span> <span class="s1">&#39;O2t&#39;</span><span class="p">:</span>
+            <span class="c1">#flip the signs of reactions with negative fluxes</span>
+            <span class="k">if</span> <span class="n">flux_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rxn</span> <span class="p">,</span> <span class="s1">&#39;fluxes&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">flip_sign</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">flip_sign</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1">#make equilibrator model of reaction</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">stringReaction</span><span class="p">(</span><span class="n">levdopa_synthesis</span><span class="o">.</span><span class="n">reactions</span><span class="o">.</span><span class="n">get_by_id</span><span class="p">(</span><span class="n">rxn</span><span class="p">))</span>
+                <span class="n">reaction</span> <span class="o">=</span> <span class="n">equilibrator_api</span><span class="o">.</span><span class="n">parse_reaction_formula</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                <span class="n">cc</span> <span class="o">=</span> <span class="n">equilibrator_api</span><span class="o">.</span><span class="n">ComponentContribution</span><span class="p">(</span><span class="n">p_h</span><span class="o">=</span><span class="n">Q_</span><span class="p">(</span><span class="mf">7.0</span><span class="p">),</span> <span class="n">temperature</span><span class="o">=</span><span class="n">Q_</span><span class="p">(</span><span class="s2">&quot;298.15K&quot;</span><span class="p">))</span>
+                <span class="c1"># calculate standard free energy</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">useGm</span><span class="p">:</span>
+                    <span class="n">g</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">flip_sign</span> <span class="o">*</span> <span class="n">cc</span><span class="o">.</span><span class="n">standard_dg_prime</span><span class="p">(</span><span class="n">reaction</span><span class="p">))</span>
+                <span class="c1">#calculate metabolic free energy</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">g</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">flip_sign</span> <span class="o">*</span> <span class="n">cc</span><span class="o">.</span><span class="n">physiological_dg_prime</span><span class="p">(</span><span class="n">reaction</span><span class="p">))</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failed to add reaction </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">rxn</span><span class="p">)</span>
+                <span class="n">g</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="n">indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rxn</span><span class="p">)</span>
+    <span class="c1">#extract magnitudes and errors from string form g</span>
+    <span class="n">magnitudes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">magnitudes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">magnitudes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">magnitude</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">magnitude</span><span class="p">)</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)]))</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">magnitude</span><span class="p">)[</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">magnitude</span><span class="p">)</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:]))</span>
+    <span class="c1">#return result as data frame</span>
+    <span class="k">if</span> <span class="n">useGm</span><span class="p">:</span>
+        <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dGm_kJ_per_mol&#39;</span> <span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dGo_kJ_per_mol&#39;</span> <span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">magnitudes</span> <span class="p">,</span> <span class="n">errors</span><span class="p">)</span> <span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">indices</span> <span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">cols</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Overall-Pathway-Thermodynamics-of-FBA-Solutions">Overall Pathway Thermodynamics of FBA Solutions<a class="anchor-link" href="#Overall-Pathway-Thermodynamics-of-FBA-Solutions">&#182;</a></h1><p>Calculate the $\Delta G^{'}_{m}$ of each step in a given flux solution</p>
+<p>Multiply this $\Delta G^{'}_{m}$ (in kJ/mol) by the corresponding step flux (in mol/min, arbitrary units here)</p>
+<p>Sum these scaled $\Delta G^{'}_{m}$ to get an overall value for the pathway</p>
+<p>Divide by the flux of L-DOPA synthesis so that we can compare FBA solutions more fairly</p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Aerobic-Solution">Aerobic Solution<a class="anchor-link" href="#Aerobic-Solution">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Gm</span> <span class="o">=</span> <span class="n">getG</span><span class="p">(</span><span class="n">solution</span> <span class="p">,</span> <span class="n">useGm</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">nonspontaneous</span> <span class="o">=</span> <span class="n">Gm</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;dGm_kJ_per_mol &gt; 0&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;dGm_kJ_per_mol&#39;</span> <span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">spontaneous</span> <span class="o">=</span> <span class="n">Gm</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;dGm_kJ_per_mol &lt;= 0&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;dGm_kJ_per_mol&#39;</span><span class="p">)</span>
+<span class="n">dGm_overall</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">index</span> <span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">Gm</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;dGm_kJ_per_mol&#39;</span><span class="p">]):</span>
+        <span class="n">dGm_overall</span> <span class="o">+=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;dGm_kJ_per_mol&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span> <span class="p">,</span> <span class="s1">&#39;fluxes&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total dGm of flux vector: </span><span class="si">%f</span><span class="s1"> kJ/min&#39;</span> <span class="o">%</span> <span class="n">dGm_overall</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normalized to L-DOPA production: </span><span class="si">%f</span><span class="s1"> kJ/mol L-DOPA&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">dGm_overall</span><span class="p">)</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;EX_levdopa_e&#39;</span> <span class="p">,</span> <span class="s1">&#39;fluxes&#39;</span><span class="p">])))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Aerobic Solution
+Total dGm of flux vector: -8916.193232 kJ/min
+Normalized to L-DOPA production: -1754.361105 kJ/mol L-DOPA
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Rich-Media-Aerobic-Solution">Rich Media Aerobic Solution<a class="anchor-link" href="#Rich-Media-Aerobic-Solution">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aerobic Solution with Glutamate Feed&#39;</span><span class="p">)</span>
+<span class="n">Gm_glu</span> <span class="o">=</span> <span class="n">getG</span><span class="p">(</span><span class="n">solution_glutamate</span> <span class="p">,</span> <span class="n">useGm</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">nonspontaneous_glu</span> <span class="o">=</span> <span class="n">Gm_glu</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;dGm_kJ_per_mol &gt; 0&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;dGm_kJ_per_mol&#39;</span> <span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">spontaneous_glu</span> <span class="o">=</span> <span class="n">Gm_glu</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;dGm_kJ_per_mol &lt;= 0&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;dGm_kJ_per_mol&#39;</span><span class="p">)</span>
+
+<span class="n">dGm_overall_glu</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">index</span> <span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">Gm_glu</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;dGm_kJ_per_mol&#39;</span><span class="p">]):</span>
+        <span class="n">dGm_overall_glu</span> <span class="o">+=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;dGm_kJ_per_mol&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">solution_glutamate</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span> <span class="p">,</span> <span class="s1">&#39;fluxes&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total dGm of flux vector: </span><span class="si">%f</span><span class="s1"> kJ/min&#39;</span> <span class="o">%</span> <span class="n">dGm_overall_glu</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normalized to L-DOPA production: </span><span class="si">%f</span><span class="s1"> kJ/mol L-DOPA&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">dGm_overall_glu</span><span class="p">)</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">solution_glutamate</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;EX_levdopa_e&#39;</span> <span class="p">,</span> <span class="s1">&#39;fluxes&#39;</span><span class="p">])))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Aerobic Solution with Glutamate Feed
+Total dGm of flux vector: -300455.460008 kJ/min
+Normalized to L-DOPA production: -1945.646601 kJ/mol L-DOPA
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div></section></section>
 </div>
 </div>
@@ -13834,7 +14763,7 @@ require(
         Reveal.addEventListener('slidechanged', update);
 
         function setScrollingSlide() {
-            var scroll = false
+            var scroll = true
             if (scroll === true) {
               var h = $('.reveal').height() * 0.95;
               $('section.present').find('section')
