@@ -3,6 +3,10 @@ Genome-scale FBA, thermodynamic, and stoichiometric analysis of engineered levdo
 
 Final project for Thayer School of Engineering at Dartmouth College ENGS 161, metabolic engineering.
 
+## Lauch the Presentation!
+
+* [https://russell-stewart.github.io/levdopa_synthesis/presentation.slides.html](https://russell-stewart.github.io/levdopa_synthesis/presentation.slides.html#/)
+
 ## Analysis Notebooks
 
 The following Jupyter notebooks contain the analysis done for the project:
