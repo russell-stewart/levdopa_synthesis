@@ -43,7 +43,10 @@ The following external metabolomics datasets are used in this project
 
 ## References
 
-* [http://jpet.aspetjournals.org/content/jpet/195/3/453.full.pdf](http://jpet.aspetjournals.org/content/jpet/195/3/453.full.pdf)
-* [https://apps.who.int/iris/bitstream/handle/10665/93142/EML_18_eng.pdf;jsessionid=BCB6FBC3AFB8913EB126C251473F6D05?sequence=1](https://apps.who.int/iris/bitstream/handle/10665/93142/EML_18_eng.pdf;jsessionid=BCB6FBC3AFB8913EB126C251473F6D05?sequence=1)
-* [https://www.nature.com/articles/srep30080](https://www.nature.com/articles/srep30080)
-* [https://link.springer.com/article/10.1007/s10295-011-0973-0](https://link.springer.com/article/10.1007/s10295-011-0973-0)
+* Journal Articles
+  - [http://jpet.aspetjournals.org/content/jpet/195/3/453.full.pdf](http://jpet.aspetjournals.org/content/jpet/195/3/453.full.pdf)
+  - [https://apps.who.int/iris/bitstream/handle/10665/93142/EML_18_eng.pdf;jsessionid=BCB6FBC3AFB8913EB126C251473F6D05?sequence=1](https://apps.who.int/iris/bitstream/handle/10665/93142/EML_18_eng.pdf;jsessionid=BCB6FBC3AFB8913EB126C251473F6D05?sequence=1)
+  - [https://www.nature.com/articles/srep30080](https://www.nature.com/articles/srep30080)
+  - [https://link.springer.com/article/10.1007/s10295-011-0973-0](https://link.springer.com/article/10.1007/s10295-011-0973-0)
+* Patents
+  - [https://patents.google.com/patent/US20060141587A1/en?oq=US20060141587A1-2](https://patents.google.com/patent/US20060141587A1/en?oq=US20060141587A1-2)

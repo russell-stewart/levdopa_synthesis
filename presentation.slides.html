@@ -13730,7 +13730,7 @@ a.anchor-link {
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#load up everything</span>
@@ -13810,7 +13810,7 @@ unknown metabolite &#39;levdopa_e&#39; created
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">levdopa_synthesis</span><span class="o">.</span><span class="n">objective</span> <span class="o">=</span> <span class="s1">&#39;EX_levdopa_e&#39;</span><span class="c1">#maximize L-DOPA production</span>
@@ -13821,6 +13821,7 @@ unknown metabolite &#39;levdopa_e&#39; created
 <span class="n">builder</span><span class="o">.</span><span class="n">reaction_data</span> <span class="o">=</span> <span class="n">solution</span><span class="o">.</span><span class="n">fluxes</span><span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">solution</span><span class="p">[</span><span class="s1">&#39;EX_glc__D_e&#39;</span><span class="p">])</span>
 <span class="n">Y_ldopa_glc</span> <span class="o">=</span> <span class="n">solution</span><span class="p">[</span><span class="s1">&#39;EX_levdopa_e&#39;</span><span class="p">]</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">solution</span><span class="p">[</span><span class="s1">&#39;EX_glc__D_e&#39;</span><span class="p">])</span>
 <span class="n">Y_ldopa_nh4</span> <span class="o">=</span> <span class="n">solution</span><span class="p">[</span><span class="s1">&#39;EX_levdopa_e&#39;</span><span class="p">]</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">solution</span><span class="p">[</span><span class="s1">&#39;EX_nh4_e&#39;</span><span class="p">])</span>
+<span class="n">levdopa_synthesis_from_fba</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">levdopa_synthesis</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Yield of levdopa from glucose: </span><span class="si">%f</span><span class="s1"> mol/mol; </span><span class="si">%f</span><span class="s1"> cmol/cmol&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">Y_ldopa_glc</span> <span class="p">,</span> <span class="mi">9</span><span class="o">/</span><span class="mi">6</span><span class="o">*</span><span class="n">Y_ldopa_glc</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Yield of levdopa from ammonia: </span><span class="si">%f</span><span class="s1"> mol/mol&#39;</span> <span class="o">%</span> <span class="n">Y_ldopa_nh4</span><span class="p">)</span>
 </pre></div>
@@ -14801,7 +14802,7 @@ Normalized to L-DOPA production: -1945.646601 kJ/mol L-DOPA
     <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">reaction_names</span> <span class="p">,</span> <span class="n">flux_df</span><span class="o">.</span><span class="n">fluxes</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ReactionFormula&#39;</span> <span class="p">,</span> <span class="s1">&#39;RelativeFlux&#39;</span><span class="p">])</span>
     <span class="n">result</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Equilibrator_Pathway_CSV/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">filename</span> <span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 <span class="c1">#Run this function for the shikimate pathway. Only put in the rows that aren&#39;t sinks or passive transports.</span>
-<span class="n">shikimate_rxns</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">levdopa_synthesis</span><span class="o">.</span><span class="n">reactions</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">subsystem</span> <span class="o">==</span> <span class="s1">&#39;shikimate_pathway&#39;</span> <span class="ow">or</span> <span class="n">r</span><span class="o">.</span><span class="n">subsystem</span> <span class="o">==</span> <span class="s1">&#39;tyrosine_metabolism&#39;</span><span class="p">]</span>
+<span class="n">shikimate_rxns</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">levdopa_synthesis</span><span class="o">.</span><span class="n">reactions</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">subsystem</span> <span class="o">==</span> <span class="s1">&#39;Shikimate Pathway&#39;</span> <span class="ow">or</span> <span class="n">r</span><span class="o">.</span><span class="n">subsystem</span> <span class="o">==</span> <span class="s1">&#39;Tyrosine Metabolism&#39;</span><span class="p">]</span>
 <span class="n">shikimate_fluxes</span> <span class="o">=</span> <span class="n">solution</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">shikimate_rxns</span><span class="p">,</span><span class="s1">&#39;fluxes&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">solution</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;hpaBC&#39;</span><span class="p">,</span><span class="s1">&#39;fluxes&#39;</span><span class="p">]</span>
 <span class="n">shikimate_rxns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">shikimate_fluxes</span><span class="o">.</span><span class="n">values</span> <span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">shikimate_rxns</span> <span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fluxes&#39;</span><span class="p">])</span>
 <span class="c1">#Only worry about the NADH-dependent shikimate dehydrogenase for this analysis.</span>
@@ -14994,24 +14995,323 @@ Normalized to L-DOPA production: -1945.646601 kJ/mol L-DOPA
 <h1 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h1><ul>
 <li><strong><em>How do the Wei et al. and Munoz et al. attempts compare to our maximum theoretical yields?</em></strong></li>
 <li><strong><em>Are Wei's and Munoz's genome engineering choices rational?</em></strong></li>
-<li><strong><em>What other enzymes could be manipulated to further imporve yield?</em></strong></li>
+<li><strong><em>What other work can be done to further imporve yield?</em></strong></li>
 </ul>
 
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="We-Are-Nowhere-Close-to-Yield-Limits">We Are Nowhere Close to Yield Limits<a class="anchor-link" href="#We-Are-Nowhere-Close-to-Yield-Limits">&#182;</a></h1><p><img src="figures/yieldconclusion.png" alt="Image"></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Replacing-GLCpts-is-Very-Important!">Replacing GLCpts is Very Important!<a class="anchor-link" href="#Replacing-GLCpts-is-Very-Important!">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">levdopa_synthesis_from_fba</span><span class="o">.</span><span class="n">metabolites</span><span class="o">.</span><span class="n">pep_c</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[31]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>PERCENT</th>
+      <th>FLUX</th>
+      <th>REACTION_STRING</th>
+    </tr>
+    <tr>
+      <th>RXN_STAT</th>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">PRODUCING</th>
+      <th>ENO</th>
+      <td>65.578262</td>
+      <td>13.223597</td>
+      <td>2pg_c &lt;=&gt; h2o_c + pep_c</td>
+    </tr>
+    <tr>
+      <th>PPS</th>
+      <td>34.421738</td>
+      <td>6.941007</td>
+      <td>atp_c + h2o_c + pyr_c --&gt; amp_c + 2.0 h_c + pe...</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">CONSUMING</th>
+      <th>GLCpts</th>
+      <td>49.591848</td>
+      <td>10.000000</td>
+      <td>glc__D_e + pep_c --&gt; g6p_c + pyr_c</td>
+    </tr>
+    <tr>
+      <th>dahp_synth</th>
+      <td>25.204076</td>
+      <td>5.082302</td>
+      <td>e4p_c + h2o_c + pep_c &lt;=&gt; dahp_c + pi_c</td>
+    </tr>
+    <tr>
+      <th>epsp_synth</th>
+      <td>25.204076</td>
+      <td>5.082302</td>
+      <td>pep_c + shikimate3p_c &lt;=&gt; epsp_c + pi_c</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="With-Regards-to-Pathway-Scale-Control">With Regards to Pathway-Scale Control<a class="anchor-link" href="#With-Regards-to-Pathway-Scale-Control">&#182;</a></h1><ul>
+<li>Wao's choice to upregulate the shikimate pathway's tyrosine branch (∆tyrR, ∆pheLA) is very sensible.</li>
+<li>Knocking out the pentose phosphate pathway (∆zwf) also mirrors the results of our FBA results.</li>
+<li><strong>However, knocking out or downregulating mixed acid fermentation may make sense given our FBA results, too!</strong></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="Escher_Maps/aerobic_fba.png" alt="Image"></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Chorsimate?-We-should-worry-about-DHQ-and-DAHP!">Chorsimate? We should worry about DHQ and DAHP!<a class="anchor-link" href="#Chorsimate?-We-should-worry-about-DHQ-and-DAHP!">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MDF-Optmized dG for the Shikimate Pathway (kJ/mol)&#39;</span><span class="p">)</span>
+<span class="n">shikimate_mdf</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;dG&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>MDF-Optmized dG for the Shikimate Pathway (kJ/mol)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[39]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>dG</th>
+      <th>Pathway</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>10</th>
+      <td>hpaBC</td>
+      <td>-466.614270</td>
+      <td>Tyrosine Metabolism</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>dhq_synth</td>
+      <td>-161.685611</td>
+      <td>Shikimate Pathway</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>dahp_synth</td>
+      <td>-73.130316</td>
+      <td>Shikimate Pathway</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>chorismate_mut</td>
+      <td>-47.849138</td>
+      <td>Shikimate Pathway</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>prephenate_dh</td>
+      <td>-46.834773</td>
+      <td>Shikimate Pathway</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>chorismate_synth</td>
+      <td>-45.782898</td>
+      <td>Shikimate Pathway</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>DHquinase_I</td>
+      <td>-16.006845</td>
+      <td>Shikimate Pathway</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>shikimate_dh_nadh</td>
+      <td>-16.006845</td>
+      <td>Shikimate Pathway</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>aromatic_aminotransferase</td>
+      <td>-16.006845</td>
+      <td>Tyrosine Metabolism</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ski</td>
+      <td>-16.006845</td>
+      <td>Shikimate Pathway</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>epsp_synth</td>
+      <td>-16.006845</td>
+      <td>Shikimate Pathway</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="L-DOPA-Synthesis-in-E.-coli:-Review,-Analysis,-and-Future-Directions">L-DOPA Synthesis in <em>E. coli</em>: Review, Analysis, and Future Directions<a class="anchor-link" href="#L-DOPA-Synthesis-in-E.-coli:-Review,-Analysis,-and-Future-Directions">&#182;</a></h1><h2 id="Russell-O.-Stewart">Russell O. Stewart<a class="anchor-link" href="#Russell-O.-Stewart">&#182;</a></h2><p><em>View the Github repo:</em></p>
+<p><a href="https://github.com/russell-stewart/levdopa_synthesis">github.com/russell-stewart/levdopa_synthesis</a></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="References">References<a class="anchor-link" href="#References">&#182;</a></h1><ul>
+<li>Metabolomics Data<ul>
+<li><a href="http://bigg.ucsd.edu/models/e_coli_core">http://bigg.ucsd.edu/models/e_coli_core</a></li>
+<li><a href="https://www.kegg.jp/kegg-bin/show_pathway?map01063">https://www.kegg.jp/kegg-bin/show_pathway?map01063</a></li>
+<li><a href="https://www.kegg.jp/kegg-bin/show_pathway?org_name=eco&amp;mapno=00400&amp;mapscale=&amp;show_description=hide">https://www.kegg.jp/kegg-bin/show_pathway?org_name=eco&amp;mapno=00400&amp;mapscale=&amp;show_description=hide</a></li>
+<li><a href="https://www.kegg.jp/kegg-bin/show_pathway?map00030">https://www.kegg.jp/kegg-bin/show_pathway?map00030</a></li>
+</ul>
+</li>
+<li>Journal Articles<ul>
+<li><a href="http://jpet.aspetjournals.org/content/jpet/195/3/453.full.pdf">http://jpet.aspetjournals.org/content/jpet/195/3/453.full.pdf</a></li>
+<li><a href="https://apps.who.int/iris/bitstream/handle/10665/93142/EML_18_eng.pdf;jsessionid=BCB6FBC3AFB8913EB126C251473F6D05?sequence=1">https://apps.who.int/iris/bitstream/handle/10665/93142/EML_18_eng.pdf;jsessionid=BCB6FBC3AFB8913EB126C251473F6D05?sequence=1</a></li>
+<li><a href="https://www.nature.com/articles/srep30080">https://www.nature.com/articles/srep30080</a></li>
+<li><a href="https://link.springer.com/article/10.1007/s10295-011-0973-0">https://link.springer.com/article/10.1007/s10295-011-0973-0</a></li>
+</ul>
+</li>
+<li>Patents<ul>
+<li><a href="https://patents.google.com/patent/US20060141587A1/en?oq=US20060141587A1-2">https://patents.google.com/patent/US20060141587A1/en?oq=US20060141587A1-2</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
 </div></section></section>
 </div>
 </div>
