@@ -1,5 +1,5 @@
 # levdopa_synthesis
-Genome-scale FBA, thermodynamic, and stoichiometric analysis of engineered levdopa synthesis in E. coli.
+Central metabolism-scale FBA, thermodynamic, and stoichiometric analysis of engineered levdopa synthesis in E. coli.
 
 Final project for Thayer School of Engineering at Dartmouth College ENGS 161, metabolic engineering.
 
