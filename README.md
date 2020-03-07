@@ -7,6 +7,10 @@ Final project for Thayer School of Engineering at Dartmouth College ENGS 161, me
 
 * [https://russell-stewart.github.io/levdopa_synthesis/presentation.slides.html](https://russell-stewart.github.io/levdopa_synthesis/presentation.slides.html#/)
 
+## View the Repo
+
+* [https://github.com/russell-stewart/levdopa_synthesis](https://github.com/russell-stewart/levdopa_synthesis)
+
 ## Analysis Notebooks
 
 The following Jupyter notebooks contain the analysis done for the project:
