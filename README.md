@@ -1,13 +1,13 @@
 # levdopa_synthesis
-Central metabolism-scale FBA, thermodynamic, and stoichiometric analysis of engineered levdopa synthesis in E. coli.
+Central metabolism-scale flux balance, thermodynamic, and stoichiometric analysis of engineered L-DOPA synthesis in _E. coli_.
 
-Final project for Thayer School of Engineering at Dartmouth College ENGS 161, metabolic engineering.
+Final project for Thayer School of Engineering at Dartmouth College ENGS 161, Metabolic Engineering, Winter 2020.
 
 ## Lauch the Presentation!
 
 * [https://russell-stewart.github.io/levdopa_synthesis/presentation.slides.html](https://russell-stewart.github.io/levdopa_synthesis/presentation.slides.html#/)
 
-## View the Repo
+## Supplemental Materials: View the Repo
 
 * [https://github.com/russell-stewart/levdopa_synthesis](https://github.com/russell-stewart/levdopa_synthesis)
 
@@ -35,7 +35,8 @@ The following Jupyter notebooks contain the analysis done for the project:
 
 The following external metabolomics datasets are used in this project
 
-* BiGG Models _E. coli_ core [http://bigg.ucsd.edu/models/e_coli_core](http://bigg.ucsd.edu/models/e_coli_core)
+* BiGG Models
+  - _E. coli_ core [http://bigg.ucsd.edu/models/e_coli_core](http://bigg.ucsd.edu/models/e_coli_core)
 * Relevant KEGG Pathways
   - [https://www.kegg.jp/kegg-bin/show_pathway?map01063](https://www.kegg.jp/kegg-bin/show_pathway?map01063)
   - [https://www.kegg.jp/kegg-bin/show_pathway?org_name=eco&mapno=00400&mapscale=&show_description=hide](https://www.kegg.jp/kegg-bin/show_pathway?org_name=eco&mapno=00400&mapscale=&show_description=hide)
